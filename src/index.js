@@ -123,7 +123,7 @@ class PyAtvMqttBridge {
                     openPushListener();
                 }
             });
-        }
+        };
 
         openPushListener();
         this._teardown.unshift(() => {

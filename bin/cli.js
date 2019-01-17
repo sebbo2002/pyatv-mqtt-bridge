@@ -17,43 +17,41 @@ if (!fs.existsSync(configPath)) {
 let config;
 try {
     config = require(configPath);
-}
-catch(err) {
+} catch (err) {
     console.log('Unable to parse configuration file:');
     console.log(err);
     process.exit(1);
 }
 
 try {
-    if(debug) {
+    if (debug) {
         Object.assign(config, {
             log: (level, address, message, error) => {
                 let string = `[${level}]`;
-                if(address) {
-                    string += `[${address}]`
+                if (address) {
+                    string += `[${address}]`;
                 }
                 string += ' ';
-                if(message) {
+                if (message) {
                     string += message;
                 }
-                if(message && error) {
+                if (message && error) {
                     string += ': ';
                 }
-                if(error && error.stack) {
+                if (error && error.stack) {
                     string += error.stack;
                 }
-                if(error) {
+                if (error) {
                     string += error.toString();
                 }
 
                 console.log(string);
             }
-        })
+        });
     }
 
     new PyAtvMqttBridge(config);
-}
-catch(err) {
+} catch (err) {
     console.log('Unable to start bridge:');
     console.log(err);
 }

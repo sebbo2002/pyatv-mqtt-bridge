@@ -1,0 +1,60 @@
+stages:
+  - prepare
+  - test
+  - publish
+
+
+prepare:
+  stage: prepare
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - npm ci
+    - tar -czf "node_modules.tar.gz" ./node_modules
+  artifacts:
+    paths:
+      - node_modules.tar.gz
+    expire_in: 1 day
+
+
+test:
+  stage: test
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - tar -xzf "node_modules.tar.gz" -C .
+    - rm -f ./node_modules.tar.gz
+    - npm run check
+
+
+sync_github:
+  stage: publish
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - git reset --hard
+    - git checkout $CI_COMMIT_REF_NAME
+    - git pull
+    - git push --force "https://${GITHUB_AUTH}@github.com/sebbo2002/pyatv-mqtt-bridge.git" --all
+    - git push --force "https://${GITHUB_AUTH}@github.com/sebbo2002/pyatv-mqtt-bridge.git" --tags
+  only:
+    - branches
+
+
+publish_npm:
+  stage: publish
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+    - tar -xzf "node_modules.tar.gz" -C .
+    - rm -f ./node_modules.tar.gz
+    - npm run bump
+    - yarn import
+    - npm publish --access public
+  only:
+    - tags

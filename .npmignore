@@ -1,0 +1,7 @@
+.DS_Store
+/ical-generator.sublime-workspace
+/ical-generator.sublime-project
+/node_modules/
+/test-result/
+/.idea/
+/.nyc_output

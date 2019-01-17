@@ -11,6 +11,9 @@
     "type": "git",
     "url": "http://github.com/sebbo2002/node-pyatv.git"
   },
+  "bin": {
+    "pyatv-mqtt-bridge": "./bin/cli.js"
+  },
   "engines": {
     "node": ">=8.0.0"
   },

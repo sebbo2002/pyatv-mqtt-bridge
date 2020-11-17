@@ -4,12 +4,12 @@
   "author": "Sebastian Pekarek <peithosoreixookierah@e.sebbo.net>",
   "license": "MIT",
   "bugs": {
-    "url": "http://github.com/sebbo2002/node-pyatv/issues",
+    "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge/issues",
     "email": "peithosoreixookierah@e.sebbo.net"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/sebbo2002/node-pyatv.git"
+    "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge.git"
   },
   "bin": {
     "pyatv-mqtt-bridge": "./bin/cli.js"

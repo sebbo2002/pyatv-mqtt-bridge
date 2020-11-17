@@ -34,7 +34,7 @@
     "typescript": "^4.0.5"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x ./dist/bin/*",
     "lint": "eslint . --ext .ts"
   },
   "preferGlobal": false,

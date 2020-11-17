@@ -3,8 +3,8 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 ![Status](https://git-badges.sebbo.net/98/master/build)
 
-MQTT Bridge allows you to remote control your Apple TV using the MQTT protocol. For many home automation systems, for 
-example, this protocol is supported, so Apple TV can be integrated into your existing automation system. In addition to 
+MQTT Bridge allows you to remote control your Apple TV using the MQTT protocol. For many home automation systems, for
+example, this protocol is supported, so Apple TV can be integrated into your existing automation system. In addition to
 simulating key presses, you can also query the current state of Apple TV (pyatv push_notifications).
 
 
@@ -28,8 +28,8 @@ To install the javascript module via npm run:
   "devices": [
     {
       "topic": "/home/livingroom/appletv",
-      "address": "192.168.1.2",
-      "loginId": "************************************"
+      "id": "************************************",
+      "host": "192.168.1.2"
     }
   ]
 }

@@ -15,25 +15,32 @@
     "pyatv-mqtt-bridge": "./bin/cli.js"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "devDependencies": {
-    "eslint": "^5.12.0",
-    "npm-check": "^5.9.0"
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.1.2",
+    "@semantic-release/npm": "^7.0.6",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/node": "^14.14.7",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "eslint": "^7.13.0",
+    "semantic-release": "^17.2.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
   },
   "scripts": {
-    "all": "npm run check",
-    "check": "npm run check:eslint && npm run check:npm && npm run check:nsp",
-    "check:eslint": "eslint ./bin ./src",
-    "check:quick": "npm run check:eslint",
-    "check:nsp": "npm_config_audit_level=moderate npm audit",
-    "check:npm": "npm-check -s",
-    "bump": "jq -M \".version=\\\"$CI_COMMIT_TAG\\\"\" package.json|sponge package.json"
+    "build": "tsc",
+    "lint": "eslint . --ext .ts"
   },
   "preferGlobal": false,
   "main": "./src/index.js",
   "dependencies": {
-    "@sebbo2002/node-pyatv": "^1.0.3",
-    "mqtt": "^2.18.8"
+    "@sebbo2002/node-pyatv": "^2.0.0",
+    "mqtt": "^4.2.5"
   }
 }

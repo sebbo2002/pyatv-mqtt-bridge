@@ -1,7 +1,11 @@
-.DS_Store
-/ical-generator.sublime-workspace
-/ical-generator.sublime-project
+/.dockerignore
+/Dockerfile
 /node_modules/
-/test-result/
+/dist/test/
+/release.config.js
+/.eslintrc.json
+/doc
 /.idea/
+/.github
 /.nyc_output
+/test-result

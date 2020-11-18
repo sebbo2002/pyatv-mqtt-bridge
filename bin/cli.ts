@@ -19,7 +19,6 @@ if (!existsSync(configPath)) {
 let config;
 try {
     config = require(configPath);
-    console.log(config);
 } catch (err) {
     console.log('Unable to parse configuration file:');
     console.log(err);

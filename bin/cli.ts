@@ -1,15 +1,17 @@
 #!/usr/bin/env node
+'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const PyAtvMqttBridge = require('../src');
+import {existsSync} from 'fs';
+import {resolve} from 'path';
+import PyAtvMqttBridge from '../src/index';
+import {LogParam} from '../src/types';
 
 console.log('# pyatv-mqtt-bridge');
 console.log('----------------------------');
 
 const debug = process.argv.indexOf('--debug') > -1;
-const configPath = path.resolve(process.cwd(), process.argv[process.argv.length - 1]);
-if (!fs.existsSync(configPath)) {
+const configPath = resolve(process.cwd(), process.argv[process.argv.length - 1]);
+if (!existsSync(configPath)) {
     console.log('Usage: pyatv-mqtt-bridge [--debug] ~/pyatv-mqtt-bridge-config.json');
     process.exit(1);
 }
@@ -26,23 +28,23 @@ try {
 try {
     if (debug) {
         Object.assign(config, {
-            log: (level, address, message, error) => {
-                let string = `[${level}]`;
-                if (address) {
-                    string += `[${address}]`;
+            log: (msg: LogParam) => {
+                let string = `[${msg.level}]`;
+                if (msg.host) {
+                    string += `[${msg.host}]`;
                 }
                 string += ' ';
-                if (message) {
-                    string += message;
+                if (msg.message) {
+                    string += msg.message;
                 }
-                if (message && error) {
+                if (msg.message && msg.error) {
                     string += ': ';
                 }
-                if (error && error.stack) {
-                    string += error.stack;
+                if (msg.error && msg.error.stack) {
+                    string += msg.error.stack;
                 }
-                if (error) {
-                    string += error.toString();
+                if (msg.error) {
+                    string += msg.error.toString();
                 }
 
                 console.log(string);

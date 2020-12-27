@@ -40,7 +40,7 @@
   "preferGlobal": false,
   "main": "./src/index.js",
   "dependencies": {
-    "@sebbo2002/node-pyatv": "^3.0.0",
+    "@sebbo2002/node-pyatv": "^3.0.1",
     "mqtt": "^4.2.6"
   }
 }

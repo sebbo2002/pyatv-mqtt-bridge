@@ -57,6 +57,12 @@ pyatv-mqtt-bridge --debug /home/eve/pyatv-mqtt-bridge.json
 ```
 
 
+#### How can I send commands to the Apple TV?
+To execute a command send any message to the topic `$device/$commad`. `$device` is the configured topic of the device
+and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/lib/types.ts#L49).
+Example: `/home/living/appletv/menu`.
+
+
 ## Copyright and license
 
 Copyright (c) Sebastian Pekarek under the [MIT license](LICENSE).

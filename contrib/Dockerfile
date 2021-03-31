@@ -13,10 +13,16 @@ FROM ubuntu
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
+RUN apt-get update
+
+RUN apt-get install -y \
+        python3 python3-pip
+
+RUN apt-get install -y \
+        curl && \
+    curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y \
-        python3 python3-pip \
-        nodejs npm
+        nodejs
 
 WORKDIR /app
 

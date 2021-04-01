@@ -19,9 +19,11 @@ if (!existsSync(configPath)) {
 let config;
 try {
     config = require(configPath);
-} catch (err) {
+}
+catch (err) {
     console.log('Unable to parse configuration file:');
     console.log(err);
+    console.log('\nHave you removed the comments?\n');
     process.exit(1);
 }
 

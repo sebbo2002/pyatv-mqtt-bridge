@@ -21,7 +21,10 @@ To install the javascript module via npm run:
 
 1. Use pyatv to connect to your Apple TV and authenticate [[?](https://pyatv.dev/getting-started/)]
 
-2. Create a new pyatv-mqtt-bridge configuration file
+2. Create a new pyatv-mqtt-bridge configuration file. Your can use the
+   [`config.example.json`](https://github.com/sebbo2002/pyatv-mqtt-bridge/blob/develop/config.example.json) to start
+   with.
+
 ```json
 {
   "broker": "mqtt://192.168.1.1",

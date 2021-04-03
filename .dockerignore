@@ -1,0 +1,8 @@
+.DS_Store
+/.github
+/.idea
+/.nyc_output
+/dist
+/node_modules
+/doc
+/config.json

@@ -65,7 +65,7 @@ export default class PyAtvMqttBridge {
                 this.mqttClient.off('error', errorListener);
                 await new Promise(resolve => {
                     if (this.mqttClient) {
-                        this.mqttClient.end(false, () => resolve());
+                        this.mqttClient.end(false, () => resolve(undefined));
                     }
                 });
             }

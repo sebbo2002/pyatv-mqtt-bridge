@@ -16,12 +16,18 @@ To install the javascript module via npm run:
 
 	npm install -g @sebbo2002/pyatv-mqtt-bridge
 
+You can also use the provided Docker container to run `pyatv-mqtt-bridge` within docker:
+
+    docker pull sebbo2002/pyatv-mqtt-bridge
 
 ## ⚒ Quick Start
 
 1. Use pyatv to connect to your Apple TV and authenticate [[?](https://pyatv.dev/getting-started/)]
 
-2. Create a new pyatv-mqtt-bridge configuration file
+2. Create a new pyatv-mqtt-bridge configuration file. Your can use the
+   [`config.example.json`](https://github.com/sebbo2002/pyatv-mqtt-bridge/blob/develop/config.example.json) to start
+   with.
+
 ```json
 {
   "broker": "mqtt://192.168.1.1",
@@ -38,6 +44,12 @@ To install the javascript module via npm run:
 3. Start pyatv
 ```bash
 pyatv-mqtt-bridge /home/eve/pyatv-mqtt-bridge.json
+
+# or use the Docker container
+
+docker run -d --restart=always --name=pyatv-mqtt-bridge \
+    -v $(pwd)/config.json:/app/config.json:ro \
+    sebbo2002/pyatv-mqtt-bridge
 ```
 
 
@@ -54,7 +66,20 @@ pip3 install pyatv
 
 ```bash
 pyatv-mqtt-bridge --debug /home/eve/pyatv-mqtt-bridge.json
+
+# or if you use the Docker container
+
+docker run -d --restart=always --name=pyatv-mqtt-bridge \
+    -v $(pwd)/config.json:/app/config.json:ro \
+    sebbo2002/pyatv-mqtt-bridge \
+    pyatv-mqtt-bridge --debug /app/config.json
 ```
+
+
+#### How can I send commands to the Apple TV?
+To execute a command send any message to the topic `$device/$commad`. `$device` is the configured topic of the device
+and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/lib/types.ts#L49).
+Example: `/home/living/appletv/menu`.
 
 
 ## Copyright and license

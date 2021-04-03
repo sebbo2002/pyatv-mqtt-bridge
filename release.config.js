@@ -26,6 +26,10 @@ const plugins = [
     ['@semantic-release/changelog', {
         'changelogFile': 'CHANGELOG.md'
     }],
+    ['@semantic-release/exec', {
+        prepareCmd: 'VERSION=${nextRelease.version} BRANCH=${options.branch} ./.github/workflows/release-prepare.sh',
+        publishCmd: 'VERSION=${nextRelease.version} BRANCH=${options.branch} ./.github/workflows/release-publish.sh',
+    }],
     '@semantic-release/npm',
     '@semantic-release/github'
 ];

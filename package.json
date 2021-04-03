@@ -23,15 +23,15 @@
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.0",
-    "@semantic-release/npm": "^7.0.8",
-    "@semantic-release/release-notes-generator": "^9.0.1",
-    "@types/node": "^14.14.8",
-    "@typescript-eslint/eslint-plugin": "^4.8.1",
-    "@typescript-eslint/parser": "^4.8.1",
-    "eslint": "^7.13.0",
-    "semantic-release": "^17.2.3",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.5"
+    "@semantic-release/npm": "^7.0.10",
+    "@semantic-release/release-notes-generator": "^9.0.2",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.22.0",
+    "semantic-release": "^17.4.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
   },
   "scripts": {
     "build": "tsc && chmod +x ./dist/bin/*",
@@ -40,7 +40,7 @@
   "preferGlobal": false,
   "main": "./src/index.js",
   "dependencies": {
-    "@sebbo2002/node-pyatv": "^3.0.0",
-    "mqtt": "^4.2.5"
+    "@sebbo2002/node-pyatv": "^3.0.1",
+    "mqtt": "^4.2.6"
   }
 }

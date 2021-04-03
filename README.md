@@ -16,6 +16,9 @@ To install the javascript module via npm run:
 
 	npm install -g @sebbo2002/pyatv-mqtt-bridge
 
+You can also use the provided Docker container to run `pyatv-mqtt-bridge` within docker:
+
+    docker pull sebbo2002/pyatv-mqtt-bridge
 
 ## ⚒ Quick Start
 
@@ -41,6 +44,12 @@ To install the javascript module via npm run:
 3. Start pyatv
 ```bash
 pyatv-mqtt-bridge /home/eve/pyatv-mqtt-bridge.json
+
+# or use the Docker container
+
+docker run -d --restart=always --name=pyatv-mqtt-bridge \
+    -v $(pwd)/config.json:/app/config.json:ro \
+    sebbo2002/pyatv-mqtt-bridge
 ```
 
 
@@ -57,6 +66,13 @@ pip3 install pyatv
 
 ```bash
 pyatv-mqtt-bridge --debug /home/eve/pyatv-mqtt-bridge.json
+
+# or if you use the Docker container
+
+docker run -d --restart=always --name=pyatv-mqtt-bridge \
+    -v $(pwd)/config.json:/app/config.json:ro \
+    sebbo2002/pyatv-mqtt-bridge \
+    pyatv-mqtt-bridge --debug /app/config.json
 ```
 
 

@@ -3,7 +3,8 @@ FROM node:lts-alpine@sha256:3689ad4435a413342ccc352170ad0f77433b41173af7fe4c0076
 WORKDIR "/app"
 
 COPY package*.json "/app/"
-RUN npm ci
+RUN apk add --no-cache --update bash && \
+    npm ci
 
 COPY . "/app/"
 RUN npm ci && \
@@ -16,7 +17,7 @@ ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 
 RUN apk add --no-cache --update \
-    nodejs python3 bash py3-pip \
+    python3 bash py3-pip \
     rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
     pip3 install pyatv && \
     apk del rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \

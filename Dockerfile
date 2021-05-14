@@ -1,4 +1,4 @@
-FROM node:lts-alpine@sha256:3689ad4435a413342ccc352170ad0f77433b41173af7fe4c0076f0c9792642cb as build-container
+FROM node:alpine@sha256:8704247878fe10eddfcb5c26540112b15e50d21ce8e5c7a7f6caf5cf857de219 as build-container
 
 WORKDIR "/app"
 
@@ -12,16 +12,25 @@ RUN npm ci && \
     rm -rf ./.github ./node_modules ./src ./test
 
 
-FROM node:lts-alpine@sha256:3689ad4435a413342ccc352170ad0f77433b41173af7fe4c0076f0c9792642cb
+FROM node:alpine@sha256:8704247878fe10eddfcb5c26540112b15e50d21ce8e5c7a7f6caf5cf857de219
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 
 RUN apk add --no-cache --update \
-    python3 bash py3-pip \
-    rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
-    pip3 install pyatv && \
-    apk del rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
-    rm -rf "/root/.cache" "/root/.cargo" && \
+    python3 \
+    bash \
+    py3-pip \
+    rust \
+    gcc \
+    musl-dev \
+    python3-dev \
+    libffi-dev \
+    openssl-dev \
+    cargo
+
+RUN pip3 install pyatv
+RUN apk del rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo
+RUN rm -rf "/root/.cache" "/root/.cargo" && \
     mkdir "/app" && \
     ln -s /app/dist/bin/cli.js /usr/local/bin/pyatv-mqtt-bridge
 

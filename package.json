@@ -18,27 +18,35 @@
     "node": ">=10.0.0"
   },
   "devDependencies": {
+    "@amanda-mitchell/semantic-release-npm-multiple": "^2.8.0",
+    "@eclass/semantic-release-docker": "^1.0.7",
+    "@qiwi/semantic-release-gh-pages-plugin": "^5.0.7",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.1",
-    "@semantic-release/npm": "^7.1.1",
     "@semantic-release/release-notes-generator": "^9.0.2",
     "@types/node": "^14.14.41",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
+    "license-checker": "^25.0.1",
     "semantic-release": "^17.4.2",
     "ts-node": "^9.1.1",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   },
   "scripts": {
+    "build-all": "./.github/workflows/build.sh",
     "build": "tsc && chmod +x ./dist/bin/*",
-    "lint": "eslint . --ext .ts"
+    "start": "node ./dist/bin/cli.js",
+    "develop": "ts-node ./src/bin/cli.ts",
+    "lint": "eslint . --ext .ts",
+    "license-check": "license-checker --production --summary"
   },
   "preferGlobal": false,
-  "main": "./src/index.js",
+  "main": "./dist/lib/index.js",
   "dependencies": {
     "@sebbo2002/node-pyatv": "^3.0.1",
     "mqtt": "^4.2.6"

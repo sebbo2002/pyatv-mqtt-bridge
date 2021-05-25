@@ -28,7 +28,7 @@
     "@semantic-release/github": "^7.2.1",
     "@semantic-release/release-notes-generator": "^9.0.2",
     "@types/node": "^15.6.0",
-    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.24.0",
     "eslint": "^7.27.0",
     "license-checker": "^25.0.1",

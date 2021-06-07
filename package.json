@@ -30,7 +30,7 @@
     "@types/node": "^15.12.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "license-checker": "^25.0.1",
     "semantic-release": "^17.4.2",
     "semantic-release-license": "^1.0.3",

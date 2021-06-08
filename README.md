@@ -1,7 +1,7 @@
 # pyatv-mqtt-bridge
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
-![Dependencies](https://img.shields.io/depfu/sebbo2002/pyatv-mqtt-bridge?style=flat-square)
+![Dependencies](https://img.shields.io/david/sebbo2002/pyatv-mqtt-bridge?style=flat-square)
 
 MQTT Bridge allows you to remote control your Apple TV using the MQTT protocol. For many home automation systems, for
 example, this protocol is supported, so Apple TV can be integrated into your existing automation system. In addition to

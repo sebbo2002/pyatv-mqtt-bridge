@@ -32,7 +32,6 @@ jobs:
   docker-image:
     name: Build Docker Image
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
     steps:
       - name: ☁️ Checkout
         uses: actions/checkout@v2
@@ -49,6 +48,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔐 Login to DockerHub
         uses: docker/login-action@v1
+        if: ${{ github.repository != 'sebbo2002/js-template' }}
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
+          push: ${{ github.ref == 'refs/heads/develop' && github.repository != 'sebbo2002/js-template' }}
           tags: ghcr.io/${{ github.repository }}:build-container
           cache-from: ghcr.io/${{ github.repository }}:build-container
       - name: 🪄 Build and push (2/2)
@@ -72,7 +72,7 @@ jobs:
           context: .
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
+          push: ${{ github.repository != 'sebbo2002/js-template' }}
           tags: |
             ${{ github.repository }}:${{ github.sha }}
             ghcr.io/${{ github.repository }}:${{ github.sha }}
@@ -92,7 +92,7 @@ jobs:
     needs:
       - license-checker
       - docker-image
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    if: ${{ github.repository != 'sebbo2002/js-template' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
     steps:
       - name: ☁️ Checkout Project
         uses: actions/checkout@v2

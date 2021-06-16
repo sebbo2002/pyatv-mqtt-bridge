@@ -64,9 +64,11 @@ jobs:
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
+          pull: true
           push: ${{ github.ref == 'refs/heads/develop' && github.repository != 'sebbo2002/js-template' }}
           tags: ghcr.io/${{ github.repository }}:build-container
           cache-from: ghcr.io/${{ github.repository }}:build-container
+          cache-to: type=inline
       - name: 🪄 Build and push (2/2)
         id: build
         uses: docker/build-push-action@v2
@@ -74,6 +76,7 @@ jobs:
           context: .
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
+          pull: true
           push: ${{ github.repository != 'sebbo2002/js-template' }}
           tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
           labels: |
@@ -83,6 +86,7 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
           cache-from: ghcr.io/${{ github.repository }}:build-container
+          cache-to: type=inline
       - name: 🔄 Push container to DockerHub
         if: ${{ env.PUSH_TO_DOCKERHUB == true }}
         run: |

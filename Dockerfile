@@ -26,10 +26,11 @@ RUN apk add --no-cache --update \
     musl-dev \
     python3-dev \
     libffi-dev \
+    libressl-dev \
     openssl-dev \
     cargo && \
     pip3 install pyatv && \
-    apk del rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
+    apk del rust gcc libressl-dev musl-dev python3-dev libffi-dev openssl-dev cargo && \
     rm -rf "/root/.cache" "/root/.cargo" && \
     ln -s /app/dist/bin/cli.js /usr/local/bin/pyatv-mqtt-bridge
 

@@ -136,14 +136,16 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: ⬇️ Pull GitHub Containers
-        run: docker pull $CONTAINER
+        run: docker pull "${IMAGE}@${DIGEST}"
         env:
-          CONTAINER: ghcr.io/${{ github.repository }}@${{ needs.docker-image.outputs.digest }}
+          IMAGE: ghcr.io/${{ github.repository }}
+          DIGEST: ${{ needs.docker-image.outputs.digest }}
       - name: ⬇️ Pull Docker Hub Containers
         if: ${{ env.PUSH_TO_DOCKERHUB == true }}
-        run: docker pull $CONTAINER
+        run: docker pull "${IMAGE}@${DIGEST}"
         env:
-          CONTAINER: ${{ github.repository }}@${{ needs.docker-image.outputs.digest }}
+          IMAGE: ${{ github.repository }}
+          DIGEST: ${{ needs.docker-image.outputs.digest }}
       - name: 🪄 Run semantic-release
         run: BRANCH=${GITHUB_REF#refs/heads/} npx semantic-release
         env:
@@ -163,7 +165,7 @@ jobs:
           GITHUB_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔃 Merge main back into develop
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: everlytic/branch-merge@1.1.1
+        uses: everlytic/branch-merge@1.1.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_ref: 'main'

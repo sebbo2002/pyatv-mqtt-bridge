@@ -3,8 +3,8 @@
 
 import {existsSync} from 'fs';
 import {resolve} from 'path';
-import PyAtvMqttBridge from '../src/index';
-import {LogParam} from '../src/types';
+import PyAtvMqttBridge from '../lib/index';
+import {LogParam} from '../lib/types';
 
 console.log('# pyatv-mqtt-bridge');
 console.log('----------------------------');

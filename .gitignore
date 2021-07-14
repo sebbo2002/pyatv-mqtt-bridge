@@ -1,7 +1,5 @@
-.DS_Store
-/node_modules
-/dist
-/doc
-/.idea/
 /.nyc_output
+/dist
+/docs
+/node_modules
 /config.json

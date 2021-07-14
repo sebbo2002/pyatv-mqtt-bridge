@@ -1,0 +1,192 @@
+name: Test & Release
+on:
+  push:
+    branches-ignore:
+      - gh-pages
+  pull_request: null
+
+jobs:
+  license-checker:
+    name: License Checker
+    runs-on: ubuntu-latest
+    if: contains(toJson(github.event.commits.*.message), '[skip ci]') == false || github.ref == 'refs/heads/main'
+    steps:
+      - name: ☁️ Checkout Project
+        uses: actions/checkout@v2
+      - name: 🔧 Setup node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: 🔧 Setup npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: 📦 Install dependencies
+        run: npm ci
+      - name: 🕵️‍♀️ Run license checker
+        run: npm run license-check
+
+  docker-image:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    env:
+      PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
+    steps:
+      - name: ☁️ Checkout
+        uses: actions/checkout@v2
+      - name: 🔧 Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: 🔧 Set up Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+      - name: 🔧 Set up Docker Layer Cache
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ hashFiles('**/package*.json') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-${{ hashFiles('**/package*.json') }}
+            ${{ runner.os }}-buildx
+      - name: 🔐 Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🔐 Login to DockerHub
+        uses: docker/login-action@v1
+        if: ${{ env.PUSH_TO_DOCKERHUB == true }}
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: ℹ️ Set Build Variables
+        id: buildVars
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
+      - name: 🪄 Build and push (1/2)
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          github-token: ${{ secrets.GH_TOKEN }}
+          target: build-container
+          builder: ${{ steps.buildx.outputs.name }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          pull: true
+          push: true
+          tags: ghcr.io/${{ github.repository }}:build-container-${{ github.sha }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+      - name: 🪄 Build and push (2/2)
+        id: build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          github-token: ${{ secrets.GH_TOKEN }}
+          builder: ${{ steps.buildx.outputs.name }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          pull: true
+          push: true
+          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          labels: |
+            org.opencontainers.image.authors=${{ github.repository_owner }}
+            org.opencontainers.image.created=${{ steps.buildVars.outputs.date }}
+            org.opencontainers.image.ref.name=${{ github.ref }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: |
+            type=local,src=/tmp/.buildx-cache
+            type=local,src=/tmp/.buildx-cache-new
+            type=registry,ref=ghcr.io/${{ github.repository }}:build-container-${{ github.sha }}
+            type=registry,ref=ghcr.io/${{ github.repository }}:next
+            type=registry,ref=ghcr.io/${{ github.repository }}:latest
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+      - name: 📄 Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      - name: 🔄 Push container to DockerHub
+        if: ${{ env.PUSH_TO_DOCKERHUB == true }}
+        run: |
+          docker pull $SOURCE
+          docker tag $SOURCE $TARGET
+          docker push $TARGET
+        env:
+          SOURCE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          TARGET: ${{ github.repository }}:${{ github.sha }}
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    env:
+      PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
+    needs:
+      - license-checker
+      - docker-image
+    if: ${{ github.repository != 'sebbo2002/js-template' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
+    steps:
+      - name: ☁️ Checkout Project
+        uses: actions/checkout@v2
+      - name: 🔧 Setup node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: 🔧 Setup npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: 📦 Install dependencies
+        run: npm ci
+      - name: 📂 Create docs folder
+        run: mkdir ./docs
+      - name: 🔐 Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🔐 Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: ⬇️ Pull GitHub Containers
+        run: docker pull "${IMAGE}@${DIGEST}"
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}
+          DIGEST: ${{ needs.docker-image.outputs.digest }}
+      - name: ⬇️ Pull Docker Hub Containers
+        if: ${{ env.PUSH_TO_DOCKERHUB == true }}
+        run: docker pull "${IMAGE}@${DIGEST}"
+        env:
+          IMAGE: ${{ github.repository }}
+          DIGEST: ${{ needs.docker-image.outputs.digest }}
+      - name: 🪄 Run semantic-release
+        run: BRANCH=${GITHUB_REF#refs/heads/} npx semantic-release
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_OWNER: ${{ github.repository_owner }}
+          GITHUB_NPM_CONFIG_REGISTRY: https://npm.pkg.github.com/
+          GITHUB_NPM_TOKEN: ${{ secrets.GH_TOKEN }}
+          PUBLIC_NPM_CONFIG_REGISTRY: https://registry.npmjs.org
+          PUBLIC_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DOCKER_TAG: ${{ github.sha }}
+          DOCKER_REGISTRY_IMAGE: ${{ github.repository }}
+          DOCKER_REGISTRY_USERNAME: ${{ github.repository_owner }}
+          DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          GITHUB_REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
+          GITHUB_REGISTRY_USERNAME: ${{ github.repository_owner }}
+          GITHUB_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🔃 Merge main back into develop
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: everlytic/branch-merge@1.1.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_ref: 'main'
+          target_branch: 'develop'
+          commit_message_template: 'Merge branch {source_ref} into {target_branch} [skip ci]'

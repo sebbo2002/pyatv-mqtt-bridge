@@ -42,14 +42,6 @@ jobs:
       - name: 🔧 Set up Buildx
         id: buildx
         uses: docker/setup-buildx-action@master
-      - name: 🔧 Set up Docker Layer Cache
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('**/package*.json') }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-${{ hashFiles('**/package*.json') }}
-            ${{ runner.os }}-buildx
       - name: 🔐 Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -76,8 +68,6 @@ jobs:
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ github.sha }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: 🪄 Build and push (2/2)
         id: build
         uses: docker/build-push-action@v2
@@ -96,16 +86,9 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
           cache-from: |
-            type=local,src=/tmp/.buildx-cache
-            type=local,src=/tmp/.buildx-cache-new
             type=registry,ref=ghcr.io/${{ github.repository }}:build-container-${{ github.sha }}
             type=registry,ref=ghcr.io/${{ github.repository }}:next
             type=registry,ref=ghcr.io/${{ github.repository }}:latest
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-      - name: 📄 Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
       - name: 🔄 Push container to DockerHub
         if: ${{ env.PUSH_TO_DOCKERHUB == true }}
         run: |
@@ -155,13 +138,19 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: ⬇️ Pull GitHub Containers
-        run: docker pull "${IMAGE}@${DIGEST}"
+        id: github
+        run: |
+          docker pull "${IMAGE}@${DIGEST}"
+          echo "::set-output name=image::${IMAGE}@${DIGEST}"
         env:
           IMAGE: ghcr.io/${{ github.repository }}
           DIGEST: ${{ needs.docker-image.outputs.digest }}
       - name: ⬇️ Pull Docker Hub Containers
         if: ${{ env.PUSH_TO_DOCKERHUB == true }}
-        run: docker pull "${IMAGE}@${DIGEST}"
+        id: dockerhub
+        run: |
+          docker pull "${IMAGE}@${DIGEST}"
+          echo "::set-output name=image::${IMAGE}@${DIGEST}"
         env:
           IMAGE: ${{ github.repository }}
           DIGEST: ${{ needs.docker-image.outputs.digest }}
@@ -175,13 +164,8 @@ jobs:
           GITHUB_NPM_TOKEN: ${{ secrets.GH_TOKEN }}
           PUBLIC_NPM_CONFIG_REGISTRY: https://registry.npmjs.org
           PUBLIC_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          DOCKER_TAG: ${{ github.sha }}
-          DOCKER_REGISTRY_IMAGE: ${{ github.repository }}
-          DOCKER_REGISTRY_USERNAME: ${{ github.repository_owner }}
-          DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          GITHUB_REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
-          GITHUB_REGISTRY_USERNAME: ${{ github.repository_owner }}
-          GITHUB_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_LOCAL_IMAGE_GH: ${{ steps.github.outputs.image }}
+          DOCKER_LOCAL_IMAGE_DH: ${{ steps.dockerhub.outputs.image }}
       - name: 🔃 Merge main back into develop
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: everlytic/branch-merge@1.1.2

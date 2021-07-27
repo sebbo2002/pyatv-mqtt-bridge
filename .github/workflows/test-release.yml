@@ -98,6 +98,8 @@ jobs:
         env:
           SOURCE: ghcr.io/${{ github.repository }}:${{ github.sha }}
           TARGET: ${{ github.repository }}:${{ github.sha }}
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
 
   release:
     name: Release

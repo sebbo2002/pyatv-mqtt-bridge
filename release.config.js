@@ -1,47 +1,4 @@
-const plugins = [
-    ['@semantic-release/commit-analyzer', {
-        'preset': 'angular',
-        'releaseRules': [
-            {'type': 'refactor', 'release': 'patch'},
-            {'type': 'style', 'release': 'patch'},
-            {'type': 'build', 'scope': 'deps', 'release': 'patch'},
-            {'type': 'docs', 'release': 'patch'}
-        ],
-        'parserOpts': {
-            'noteKeywords': ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
-        }
-    }],
-    ['@semantic-release/release-notes-generator', {
-        'preset': 'angular',
-        'parserOpts': {
-            'noteKeywords': ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
-        },
-        'writerOpts': {
-            'commitsSort': ['subject', 'scope']
-        }
-    }],
-    ['@semantic-release/exec', {
-        'prepareCmd': 'npm run build'
-    }],
-    ['@semantic-release/changelog', {
-        'changelogFile': 'CHANGELOG.md'
-    }],
-    ['@semantic-release/exec', {
-        prepareCmd: 'VERSION=${nextRelease.version} BRANCH=${options.branch} ./.github/workflows/release-prepare.sh',
-        publishCmd: 'VERSION=${nextRelease.version} BRANCH=${options.branch} ./.github/workflows/release-publish.sh',
-    }],
-    '@semantic-release/npm',
-    '@semantic-release/github'
-];
-
-if (process.env.BRANCH === 'main') {
-    plugins.push(['@semantic-release/git', {
-        'assets': ['CHANGELOG.md', 'package.json', 'package-lock.json'],
-        'message': 'chore(release): :bookmark: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
-    }]);
-}
-
-module.exports = {
+const configuration = {
     'branches': [
         'main',
         {
@@ -50,5 +7,61 @@ module.exports = {
             'prerelease': true
         }
     ],
-    'plugins': plugins
+    'plugins': []
 };
+
+configuration.plugins.push(['@semantic-release/commit-analyzer', {
+    'releaseRules': [
+        {'type': 'build', 'scope': 'deps', 'release': 'patch'},
+        {'type': 'docs', 'release': 'patch'}
+    ]
+}]);
+
+configuration.plugins.push('@semantic-release/release-notes-generator');
+
+configuration.plugins.push(['@semantic-release/exec', {
+    'prepareCmd': './.github/workflows/build.sh'
+}]);
+
+configuration.plugins.push('@semantic-release/changelog');
+
+configuration.plugins.push('semantic-release-license');
+
+configuration.plugins.push(['@amanda-mitchell/semantic-release-npm-multiple', {
+    'registries': {
+        'github': {},
+        'public': {}
+    }
+}]);
+
+configuration.plugins.push(['@semantic-release/github', {
+    'labels': false,
+    'assignees': process.env.GH_OWNER
+}]);
+
+configuration.plugins.push(['@semantic-release/git', {
+    'assets': ['CHANGELOG.md', 'LICENSE'],
+    'message': 'chore(release): :bookmark: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+}]);
+
+const dockerImages = [];
+if (process.env.DOCKER_LOCAL_IMAGE_DH) {
+    dockerImages.push(process.env.DOCKER_LOCAL_IMAGE_DH);
+}
+if (process.env.DOCKER_LOCAL_IMAGE_GH) {
+    dockerImages.push(process.env.DOCKER_LOCAL_IMAGE_GH);
+}
+if(dockerImages.length > 0) {
+    configuration.plugins.push(['@sebbo2002/semantic-release-docker', {
+        images: dockerImages
+    }]);
+}
+
+configuration.plugins.push(['@qiwi/semantic-release-gh-pages-plugin', {
+    'msg': 'docs: Updated for <%= nextRelease.gitTag %>',
+    'src': './docs',
+    'dst': `./${process.env.BRANCH}`,
+    'pullTagsBranch': 'main'
+}]);
+
+module.exports = configuration;

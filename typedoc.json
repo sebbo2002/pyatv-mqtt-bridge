@@ -1,0 +1,13 @@
+{
+    "entryPoints": ["./src/lib/index.ts"],
+    "exclude": [],
+    "excludeInternal": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "includeVersion": true,
+    "name": "",
+    "out": "./docs/reference",
+    "plugin": [],
+    "readme": "README.md",
+    "theme": "minimal"
+}

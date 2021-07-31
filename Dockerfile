@@ -1,39 +1,44 @@
-ARG BASEIMAGE=multiarch/alpine:x86_64-latest-stable
-FROM $BASEIMAGE as build-container
+FROM node:alpine@sha256:50b33102c307e04f73817dad87cdae145b14782875495ddd950b5a48e4937c70 as build-container
 
-RUN apk add --no-cache --update nodejs nodejs-npm bash
+WORKDIR "/app"
 
 COPY package*.json "/app/"
-WORKDIR "/app"
-RUN npm ci
+RUN apk add --no-cache --update bash && \
+    npm ci
 
 COPY . "/app/"
 RUN npm run build && \
-    rm -rf ./node_modules ./bin ./src && \
-    NODE_ENV=production npm ci
+    rm -rf ./.github ./src ./test ./node_modules
 
 
-
-FROM $BASEIMAGE
-
-ARG UID=1000
-ARG GID=1000
+FROM node:alpine@sha256:50b33102c307e04f73817dad87cdae145b14782875495ddd950b5a48e4937c70
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
+WORKDIR "/app"
 
 RUN apk add --no-cache --update \
-    nodejs python3 bash py3-pip \
-    rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
+    dumb-init \
+    python3 \
+    bash \
+    py3-pip \
+    rust \
+    gcc \
+    musl-dev \
+    python3-dev \
+    libffi-dev \
+    libressl-dev \
+    openssl-dev \
+    cargo && \
     pip3 install pyatv && \
-    apk del rust gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
+    apk del rust gcc libressl-dev musl-dev python3-dev libffi-dev openssl-dev cargo && \
     rm -rf "/root/.cache" "/root/.cargo" && \
-    mkdir "/app" && \
-    addgroup -g $GID app && \
-    adduser -u $UID -G app -s /bin/sh -D app && \
     ln -s /app/dist/bin/cli.js /usr/local/bin/pyatv-mqtt-bridge
 
-COPY --from=build-container "/app" "/app"
+COPY --from=build-container /app/package*.json "/app/"
+RUN npm ci --only-production
 
-WORKDIR "/app"
-USER app
+COPY --from=build-container "/app" "/app"
+USER node
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["pyatv-mqtt-bridge", "config.json"]

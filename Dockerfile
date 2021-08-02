@@ -1,4 +1,4 @@
-FROM node:alpine@sha256:50b33102c307e04f73817dad87cdae145b14782875495ddd950b5a48e4937c70 as build-container
+FROM node:alpine@sha256:a55cd676d1aec59d871855b86984063c8854e67a7f552af66418c5068103a509 as build-container
 
 WORKDIR "/app"
 
@@ -11,7 +11,7 @@ RUN npm run build && \
     rm -rf ./.github ./src ./test ./node_modules
 
 
-FROM node:alpine@sha256:50b33102c307e04f73817dad87cdae145b14782875495ddd950b5a48e4937c70
+FROM node:alpine@sha256:a55cd676d1aec59d871855b86984063c8854e67a7f552af66418c5068103a509
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 WORKDIR "/app"

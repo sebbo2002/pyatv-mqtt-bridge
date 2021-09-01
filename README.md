@@ -77,7 +77,7 @@ docker run -d --restart=always --name=pyatv-mqtt-bridge \
 
 
 #### How can I send commands to the Apple TV?
-To execute a command send any message to the topic `$device/$commad`. `$device` is the configured topic of the device
+To execute a command send any message to the topic `$device/$command`. `$device` is the configured topic of the device
 and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/lib/types.ts#L49).
 Example: `/home/living/appletv/menu`.
 

@@ -33,9 +33,11 @@ You can also use the provided Docker container to run `pyatv-mqtt-bridge` within
   "broker": "mqtt://192.168.1.1",
   "devices": [
     {
-      "topic": "/home/livingroom/appletv",
-      "id": "************************************",
-      "host": "192.168.1.2"
+      "name": "Any Name",
+      "topic": "home/livingroom/appletv",
+      "host": "192.168.1.2",
+      "id": "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+      "mrpCredentials": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB:CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
     }
   ]
 }

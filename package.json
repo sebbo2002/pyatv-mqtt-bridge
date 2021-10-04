@@ -18,8 +18,8 @@
     "@sebbo2002/semantic-release-docker": "^1.0.0-develop.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
-    "@semantic-release/git": "^9.0.1",
-    "@semantic-release/github": "^7.2.1",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^8.0.1",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.9.1",
     "@types/ws": "^7.4.7",
@@ -28,11 +28,11 @@
     "eslint": "^7.32.0",
     "eslint-plugin-jsonc": "^1.6.0",
     "license-checker": "^25.0.1",
-    "semantic-release": "^17.4.7",
+    "semantic-release": "^18.0.0",
     "semantic-release-license": "^1.0.3",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.21.9",
-    "typescript": "^4.4.2"
+    "typedoc": "^0.22.4",
+    "typescript": "^4.4.3"
   },
   "engines": {
     "node": ">=12.0.0"

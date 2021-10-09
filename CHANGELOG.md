@@ -1,3 +1,10 @@
+# [3.1.0-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.0.1-develop.1...v3.1.0-develop.1) (2021-10-09)
+
+
+### Features
+
+* **Dockerfile:** Use offical pyatv docker image as base image ([b60ba38](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/b60ba38c7aef3724fea4a4d6ac759352d1fb28b7))
+
 ## [3.0.1-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.0.0...v3.0.1-develop.1) (2021-09-01)
 
 # [3.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v2.2.0...v3.0.0) (2021-07-31)

@@ -12,6 +12,7 @@ RUN npm run build && \
 
 
 FROM node:alpine@sha256:e250bb9fbb7b7dfa462aff25deffe986e448e0177838fee8b69103810f06932b
+ARG PYATV_VERSION=0.9.2
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 WORKDIR "/app"
@@ -29,7 +30,7 @@ RUN apk add --no-cache --update \
     libressl-dev \
     openssl-dev \
     cargo && \
-    pip3 install pyatv && \
+    pip3 install pyatv~=${PYATV_VERSION} && \
     apk del rust gcc libressl-dev musl-dev python3-dev libffi-dev openssl-dev cargo && \
     rm -rf "/root/.cache" "/root/.cargo" && \
     ln -s /app/dist/bin/cli.js /usr/local/bin/pyatv-mqtt-bridge

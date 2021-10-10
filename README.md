@@ -1,7 +1,7 @@
 # pyatv-mqtt-bridge
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
-![Dependencies](https://img.shields.io/david/sebbo2002/pyatv-mqtt-bridge?style=flat-square)
+![Dependencies](https://img.shields.io/depfu/sebbo2002/pyatv-mqtt-bridge?style=flat-square)
 
 MQTT Bridge allows you to remote control your Apple TV using the MQTT protocol. For many home automation systems, for
 example, this protocol is supported, so Apple TV can be integrated into your existing automation system. In addition to
@@ -22,7 +22,7 @@ You can also use the provided Docker container to run `pyatv-mqtt-bridge` within
 
 ## ⚒ Quick Start
 
-1. Use pyatv to connect to your Apple TV and authenticate [[?](https://pyatv.dev/getting-started/)]
+1. Use pyatv to connect to your Apple TV and authenticate [[?](https://pyatv.dev/documentation/getting-started/)]
 
 2. Create a new pyatv-mqtt-bridge configuration file. Your can use the
    [`config.example.json`](https://github.com/sebbo2002/pyatv-mqtt-bridge/blob/develop/config.example.json) to start
@@ -33,9 +33,11 @@ You can also use the provided Docker container to run `pyatv-mqtt-bridge` within
   "broker": "mqtt://192.168.1.1",
   "devices": [
     {
-      "topic": "/home/livingroom/appletv",
-      "id": "************************************",
-      "host": "192.168.1.2"
+      "name": "Any Name",
+      "topic": "home/livingroom/appletv",
+      "host": "192.168.1.2",
+      "id": "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+      "airplayCredentials": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB:CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
     }
   ]
 }
@@ -77,8 +79,8 @@ docker run -d --restart=always --name=pyatv-mqtt-bridge \
 
 
 #### How can I send commands to the Apple TV?
-To execute a command send any message to the topic `$device/$commad`. `$device` is the configured topic of the device
-and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/lib/types.ts#L49).
+To execute a command send any message to the topic `$device/$command`. `$device` is the configured topic of the device
+and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/src/lib/types.ts#L49).
 Example: `/home/living/appletv/menu`.
 
 

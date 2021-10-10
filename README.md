@@ -22,7 +22,7 @@ You can also use the provided Docker container to run `pyatv-mqtt-bridge` within
 
 ## ⚒ Quick Start
 
-1. Use pyatv to connect to your Apple TV and authenticate [[?](https://pyatv.dev/getting-started/)]
+1. Use pyatv to connect to your Apple TV and authenticate [[?](https://pyatv.dev/documentation/getting-started/)]
 
 2. Create a new pyatv-mqtt-bridge configuration file. Your can use the
    [`config.example.json`](https://github.com/sebbo2002/pyatv-mqtt-bridge/blob/develop/config.example.json) to start
@@ -80,7 +80,7 @@ docker run -d --restart=always --name=pyatv-mqtt-bridge \
 
 #### How can I send commands to the Apple TV?
 To execute a command send any message to the topic `$device/$command`. `$device` is the configured topic of the device
-and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/lib/types.ts#L49).
+and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/src/lib/types.ts#L49).
 Example: `/home/living/appletv/menu`.
 
 

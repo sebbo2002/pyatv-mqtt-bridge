@@ -1,3 +1,15 @@
+# [3.1.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.0.0...v3.1.0) (2021-10-22)
+
+
+### Bug Fixes
+
+* **Dockerfile:** Fix `unable to find user node` ([709cb5e](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/709cb5eb17630f973344b95de1763bd3ffec6109)), closes [#99](https://github.com/sebbo2002/pyatv-mqtt-bridge/issues/99)
+
+
+### Features
+
+* **Dockerfile:** Use offical pyatv docker image as base image ([b60ba38](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/b60ba38c7aef3724fea4a4d6ac759352d1fb28b7))
+
 # [3.1.0-develop.5](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.0-develop.4...v3.1.0-develop.5) (2021-10-10)
 
 

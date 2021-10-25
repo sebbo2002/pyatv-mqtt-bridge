@@ -11,7 +11,7 @@ RUN npm run build && \
     rm -rf ./.github ./src ./test ./node_modules
 
 
-FROM ghcr.io/postlund/pyatv:master@sha256:dc484d1178c06b1425cee96d1325c09e818bc0b98c6127da32e25ef4a874ec39
+FROM ghcr.io/postlund/pyatv:master@sha256:b2647aa6b94719a77ec7a627916e972ae1f84c7adad9686bbeb8a7a4aa3df2eb
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 WORKDIR "/app"

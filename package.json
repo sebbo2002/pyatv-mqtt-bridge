@@ -23,15 +23,15 @@
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.11.6",
     "@types/ws": "^8.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.2.0",
-    "@typescript-eslint/parser": "^5.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^8.2.0",
     "eslint-plugin-jsonc": "^2.0.0",
     "license-checker": "^25.0.1",
     "semantic-release": "^18.0.0",
     "semantic-release-license": "^1.0.3",
     "ts-node": "^10.4.0",
-    "typedoc": "^0.22.7",
+    "typedoc": "^0.22.9",
     "typescript": "^4.4.4"
   },
   "engines": {

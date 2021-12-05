@@ -1,4 +1,4 @@
-FROM node:lts-alpine@sha256:8f1827381eb7fca5a79ad21cb42e935546bedf67d9f668519a7db69d77d812bf as build-container
+FROM node:lts-alpine@sha256:60ef0bed1dc2ec835cfe3c4226d074fdfaba571fd619c280474cc04e93f0ec5b as build-container
 
 WORKDIR "/app"
 
@@ -11,7 +11,7 @@ RUN npm run build && \
     rm -rf ./.github ./src ./test ./node_modules
 
 
-FROM ghcr.io/postlund/pyatv:master@sha256:9f02f28b3a9200f0e7f4155614f0c96dcce750e266071633cd438498d8c28913
+FROM ghcr.io/postlund/pyatv:master@sha256:16955ce90f16072ade199dc3e2239c8775abaab68dc23414ef82ea3be3edaeed
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 WORKDIR "/app"

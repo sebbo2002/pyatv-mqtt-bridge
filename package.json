@@ -1,5 +1,5 @@
 {
-  "author": "Sebastian Pekarek <peithosoreixookierah@e.sebbo.net>",
+  "author": "Sebastian Pekarek <mail@sebbo.net>",
   "bin": {
     "pyatv-mqtt-bridge": "./dist/bin/cli.js"
   },

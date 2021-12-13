@@ -1,3 +1,17 @@
+## [3.1.1-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.1-develop.1...v3.1.1-develop.2) (2021-12-05)
+
+
+### Bug Fixes
+
+* **CI:** Fix DockerHub container release ([01b7534](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/01b753406d1f1ef24a949c7d7b946d99b779d013))
+
+## [3.1.1-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.0...v3.1.1-develop.1) (2021-12-05)
+
+
+### Bug Fixes
+
+* **CI:** Fix DockerHub container release ([bd44aa9](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/bd44aa9e3a7c7ae0c842a6c281030183f87362af))
+
 # [3.1.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.0.0...v3.1.0) (2021-10-22)
 
 

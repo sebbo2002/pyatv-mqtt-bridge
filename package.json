@@ -28,10 +28,10 @@
     "eslint": "^8.6.0",
     "eslint-plugin-jsonc": "^2.0.0",
     "license-checker": "^25.0.1",
-    "semantic-release": "^18.0.1",
+    "semantic-release": "^19.0.2",
     "semantic-release-license": "^1.0.3",
     "ts-node": "^10.4.0",
-    "typedoc": "^0.22.10",
+    "typedoc": "^0.22.11",
     "typescript": "^4.5.4"
   },
   "engines": {

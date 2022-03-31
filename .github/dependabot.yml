@@ -15,5 +15,6 @@ updates:
       - sebbo2002
     commit-message:
       prefix: "build"
+      include: scope
     schedule:
       interval: weekly

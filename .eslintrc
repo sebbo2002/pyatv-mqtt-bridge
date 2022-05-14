@@ -47,6 +47,15 @@
                 "*.json"
             ],
             "parser": "jsonc-eslint-parser"
+        },
+        {
+            "files": [
+                "config.example.json"
+            ],
+            "rules": {
+                "jsonc/no-comments": "off",
+                "jsonc/sort-keys": "off"
+            }
         }
     ]
 }

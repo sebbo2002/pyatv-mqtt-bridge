@@ -1,3 +1,10 @@
+## [3.1.4-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.4-develop.3...v3.1.4-develop.4) (2022-05-20)
+
+
+### Reverts
+
+* Revert "ci: Remove GH_TOKEN and use GITHUB_TOKEN" ([b5c2eb6](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/b5c2eb66170b38bda1e49ad5bb5cf02bd13eb8e4))
+
 ## [3.1.4-develop.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.4-develop.2...v3.1.4-develop.3) (2022-05-16)
 
 ## [3.1.4-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.4-develop.1...v3.1.4-develop.2) (2022-05-03)

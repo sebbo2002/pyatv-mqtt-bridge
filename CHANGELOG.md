@@ -1,3 +1,10 @@
+## [3.1.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.3...v3.1.4) (2022-05-20)
+
+
+### Reverts
+
+* Revert "ci: Remove docker setup" ([655068b](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/655068b3b9c6139181ae87421db5f8144fae3e18))
+
 ## [3.1.4-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.4-develop.3...v3.1.4-develop.4) (2022-05-20)
 
 

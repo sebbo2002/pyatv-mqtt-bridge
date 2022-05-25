@@ -1,0 +1,16 @@
+{
+  "broker": "mqtt://192.168.1.1",
+  "devices": [
+    {
+      "name": "Any Name",
+      "topic": "home/livingroom/appletv",
+      "host": "192.168.1.2",
+
+      // Use Identifiers in output of `atvremote scan` for this
+      "id": "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+
+      // Use Output of `atvremote --id AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE --protocol airplay pair` for this
+      "airplayCredentials": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB:CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
+    }
+  ]
+}

@@ -1,62 +1,56 @@
 {
   "author": "Sebastian Pekarek <mail@sebbo.net>",
   "bin": {
-    "test-cli": "./dist/bin/cli.js"
+    "pyatv-mqtt-bridge": "./dist/bin/cli.js"
   },
   "bugs": {
-    "url": "https://github.com/sebbo2002/js-template/issues"
+    "email": "peithosoreixookierah@e.sebbo.net",
+    "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge/issues"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@sebbo2002/node-pyatv": "^4.3.0-develop.3",
+    "mqtt": "^4.3.2"
   },
-  "description": "A template that I use to start new projects and services.",
+  "description": "Bridge which allows you to control your Apple TV via MQTT",
   "devDependencies": {
     "@amanda-mitchell/semantic-release-npm-multiple": "^2.15.0",
     "@qiwi/semantic-release-gh-pages-plugin": "^5.2.0",
     "@sebbo2002/semantic-release-docker": "^1.0.0-develop.1",
     "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/exec": "^6.0.2",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/express": "^4.17.13",
+    "@semantic-release/github": "^8.0.2",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.11.10",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.3.0",
+    "@types/node": "^17.0.8",
+    "@types/ws": "^8.2.2",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^8.6.0",
     "eslint-plugin-jsonc": "^2.0.0",
     "license-checker": "^25.0.1",
-    "mocha": "^9.1.3",
-    "mochawesome": "^7.0.1",
-    "nyc": "^15.1.0",
+    "semantic-release": "^19.0.2",
     "semantic-release-license": "^1.0.3",
-    "source-map-support": "^0.5.21",
     "ts-node": "^10.4.0",
-    "typedoc": "^0.22.10",
-    "typescript": "^4.5.2"
+    "typedoc": "^0.22.11",
+    "typescript": "^4.5.4"
   },
   "engines": {
     "node": ">=12.0.0"
   },
-  "files": [
-    "/dist"
-  ],
-  "homepage": "https://github.com/sebbo2002/js-template#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "name": "@sebbo2002/js-template-test",
+  "main": "./dist/lib/index.js",
+  "name": "@sebbo2002/pyatv-mqtt-bridge",
+  "preferGlobal": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sebbo2002/js-template.git"
+    "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge.git"
   },
   "scripts": {
-    "build": "tsc && chmod +x ./dist/bin/*.js",
+    "build": "tsc && chmod +x ./dist/bin/*",
     "build-all": "./.github/workflows/build.sh",
-    "coverage": "nyc mocha",
-    "develop": "ts-node ./src/bin/start.ts",
+    "develop": "ts-node ./src/bin/cli.ts",
     "license-check": "license-checker --production --summary",
-    "lint": "eslint . --ext .ts,.json",
-    "start": "node ./dist/bin/start.js",
-    "test": "mocha"
-  },
-  "version": "1.0.0"
+    "lint": "eslint . --ext .ts",
+    "start": "node ./dist/bin/cli.js"
+  }
 }

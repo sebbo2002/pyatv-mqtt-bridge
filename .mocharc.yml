@@ -1,7 +1,0 @@
-loader:
-  - ts-node/esm
-full-trace: true
-recursive: true
-extension:
-  - ts
-experimental-modules: true

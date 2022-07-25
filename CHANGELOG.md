@@ -1,3 +1,15 @@
+# [4.0.0-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.5-develop.5...v4.0.0-develop.1) (2022-07-25)
+
+
+### Build System
+
+* Native ESM support ([7b86a4f](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/7b86a4f1187c387a3a5792e1fb72d822b04e3631))
+
+
+### BREAKING CHANGES
+
+* Only Support for node.js ^12.20.0 || >=14.13.1
+
 ## [3.1.5-develop.5](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.5-develop.4...v3.1.5-develop.5) (2022-07-16)
 
 ## [3.1.5-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v3.1.5-develop.3...v3.1.5-develop.4) (2022-07-16)

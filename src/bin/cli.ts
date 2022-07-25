@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
-import {existsSync} from 'fs';
+import {existsSync, readFileSync} from 'fs';
 import {resolve} from 'path';
-import PyAtvMqttBridge from '../lib/index';
-import {LogParam} from '../lib/types';
+import PyAtvMqttBridge from '../lib/index.js';
+import {LogParam} from '../lib/types.js';
 
 console.log('# pyatv-mqtt-bridge');
 console.log('----------------------------');
@@ -18,7 +18,7 @@ if (!existsSync(configPath)) {
 
 let config;
 try {
-    config = require(configPath);
+    config = JSON.parse(readFileSync(configPath, 'utf8'));
 }
 catch (err) {
     console.log('Unable to parse configuration file:');

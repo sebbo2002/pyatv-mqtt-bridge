@@ -259,8 +259,11 @@ jobs:
       - name: ⬇️ Pull GitHub Containers
         id: github
         run: |
-          docker pull "${IMAGE}@${DIGEST}"
-          echo "::set-output name=image::${IMAGE}@${DIGEST}"
+          docker pull "ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          docker pull --platform linux/amd64 "ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          docker pull --platform linux/arm64 "ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          docker pull --platform linux/arm/v7 "ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          echo "::set-output name=image::ghcr.io/${{ github.repository }}:${{ github.sha }}"
         env:
           IMAGE: ghcr.io/${{ github.repository }}
           DIGEST: ${{ needs.docker-image.outputs.digest }}
@@ -268,7 +271,9 @@ jobs:
         if: ${{ env.PUSH_TO_DOCKERHUB == 'true' }}
         id: dockerhub
         run: |
-          docker pull "${IMAGE}@${DIGEST}"
+          docker pull --platform linux/amd64 "${IMAGE}@${DIGEST}"
+          docker pull --platform linux/arm64 "${IMAGE}@${DIGEST}"
+          docker pull --platform linux/arm/v7 "${IMAGE}@${DIGEST}"
           echo "::set-output name=image::${IMAGE}@${DIGEST}"
         env:
           IMAGE: ${{ github.repository }}

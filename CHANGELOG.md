@@ -1,3 +1,5 @@
+## [4.0.2-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.1...v4.0.2-develop.1) (2022-10-14)
+
 ## [4.0.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.0...v4.0.1) (2022-10-09)
 
 ## [4.0.1-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.0...v4.0.1-develop.1) (2022-10-08)

@@ -241,6 +241,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: 'npm'
+      - name: 🔧 Setup regclient
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          curl -L https://github.com/regclient/regclient/releases/latest/download/regctl-linux-amd64 > "$HOME/.local/bin/regctl"
+          chmod +x "$HOME/.local/bin/regctl"
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: 📦 Install dependencies
         run: npm ci
       - name: 📂 Create docs folder
@@ -256,23 +262,6 @@ jobs:
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: ⬇️ Pull GitHub Containers
-        id: github
-        run: |
-          docker pull "${IMAGE}@${DIGEST}"
-          echo "::set-output name=image::${IMAGE}@${DIGEST}"
-        env:
-          IMAGE: ghcr.io/${{ github.repository }}
-          DIGEST: ${{ needs.docker-image.outputs.digest }}
-      - name: ⬇️ Pull Docker Hub Containers
-        if: ${{ env.PUSH_TO_DOCKERHUB == 'true' }}
-        id: dockerhub
-        run: |
-          docker pull "${IMAGE}@${DIGEST}"
-          echo "::set-output name=image::${IMAGE}@${DIGEST}"
-        env:
-          IMAGE: ${{ github.repository }}
-          DIGEST: ${{ needs.docker-image.outputs.digest }}
       - name: 🪄 Run semantic-release
         run: BRANCH=${GITHUB_REF#refs/heads/} npx semantic-release
         env:
@@ -283,8 +272,8 @@ jobs:
           GITHUB_NPM_TOKEN: ${{ secrets.GH_TOKEN }}
           PUBLIC_NPM_CONFIG_REGISTRY: https://registry.npmjs.org
           PUBLIC_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          DOCKER_LOCAL_IMAGE_GH: ${{ steps.github.outputs.image }}
-          DOCKER_LOCAL_IMAGE_DH: ${{ steps.dockerhub.outputs.image }}
+          DOCKER_LOCAL_IMAGE_GH: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          DOCKER_LOCAL_IMAGE_DH: ${{ github.repository }}:${{ github.sha }}
       - name: 🔃 Merge main back into develop
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: everlytic/branch-merge@1.1.4

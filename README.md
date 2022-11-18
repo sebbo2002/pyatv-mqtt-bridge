@@ -109,6 +109,30 @@ To execute a command send any message to the topic `$device/$command`. `$device`
 and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/src/lib/types.ts#L49).
 Example: `/home/living/appletv/menu`.
 
+#### How to check the current Apple TV power state and other status information ?
+
+You can listen to several subtopics from the root MQTT topic you've set on your `config.json` file
+(i.e. : `/home/living/appletv`), such as `/powerState` (on, off) and `/deviceState` (iddle, playing, etc...).
+
+#### When the Apple TV is off, the turnOff command turns it on instead, how to fix this ?
+
+Say you send an MQTT message to turn off your Apple TV each time you're leaving home,
+with the following MQTT topic : `/home/living/appletv/turnOff`.  
+... but when you are back home, sometimes your Apple TV is on ! 🤔
+
+Actually, if you press the power button in the right upper corner of your Apple TV remote iOS app, while your Apple TV
+is already off, it will switch it on as well, and this project only provides bridging between MQTT
+and PyATV / Apple TV APIs, with no additional data persistence.
+
+> (You could use the `/suspend` command instead of `/turnOff` to avoid this, but the `suspend` and `wakeup`
+> commands are deprecated and may lead to unexpected behaviors).
+
+So you just need to implement a listener for the powerState MQTT topic (i.e. : `/home/living/appletv/powerState`)
+in your own app, and store the payload value somewhere (DB, local file, Redis...).
+
+Then your app logic with some "standby apple TV" feature should trigger an MQTT `/turnOff` command ONLY when your
+powerState stored value is 'on'.
+
 ## Copyright and license
 
 Copyright (c) Sebastian Pekarek under the [MIT license](LICENSE).

@@ -25,7 +25,7 @@
     "@types/ws": "^8.5.3",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "eslint-plugin-jsonc": "^2.5.0",
     "esm": "^3.2.25",
     "license-checker": "^25.0.1",

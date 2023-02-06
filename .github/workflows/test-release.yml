@@ -54,7 +54,7 @@ jobs:
         id: buildVars
         run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
       - name: 🪄 Build and push (1/2)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         continue-on-error: true
         id: docker-build-1-1
         with:
@@ -69,7 +69,7 @@ jobs:
           cache-from: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
           cache-to: type=inline
       - name: 🪄 Build and push (1/2, second try)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         continue-on-error: true
         if: steps.docker-build-1-1.outcome=='failure'
         id: docker-build-1-2
@@ -85,7 +85,7 @@ jobs:
           cache-from: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
           cache-to: type=inline
       - name: 🪄 Build and push (1/2, third try)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         continue-on-error: true
         if: steps.docker-build-1-2.outcome=='failure'
         id: docker-build-1-3
@@ -109,7 +109,7 @@ jobs:
              exit 1
           fi
       - name: 🪄 Build and push (2/2)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         continue-on-error: true
         id: docker-build-2-1
         with:
@@ -133,7 +133,7 @@ jobs:
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:next
       - name: 🪄 Build and push (2/2; second try)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         continue-on-error: true
         if: steps.docker-build-2-1.outcome=='failure'
         id: docker-build-2-2
@@ -158,7 +158,7 @@ jobs:
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:next
       - name: 🪄 Build and push (2/2; third try)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         if: steps.docker-build-2-2.outcome=='failure'
         continue-on-error: true
         id: docker-build-2-3
@@ -202,7 +202,7 @@ jobs:
       - name: 🔄 Push container to DockerHub
         id: docker-build-dh
         if: ${{ env.PUSH_TO_DOCKERHUB == 'true' }}
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}

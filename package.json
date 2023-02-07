@@ -33,7 +33,7 @@
     "semantic-release-license": "^1.0.3",
     "ts-node": "^10.8.1",
     "typedoc": "^0.23.24",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "engines": {
     "node": "^12.20.0 || >=14.13.1"

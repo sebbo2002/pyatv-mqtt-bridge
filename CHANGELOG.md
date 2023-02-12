@@ -1,3 +1,15 @@
+# [5.0.0-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.5...v5.0.0-develop.1) (2023-02-12)
+
+
+### Build System
+
+* Deprecate node.js 12 ([426588b](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/426588b4bb7bde2924bbc92006ca839e960872e1))
+
+
+### BREAKING CHANGES
+
+* From now on, only node.js ^14.8.0 || >=16.0.0 are supported
+
 ## [4.0.3-develop.5](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.4...v4.0.3-develop.5) (2023-01-01)
 
 ## [4.0.3-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.3...v4.0.3-develop.4) (2022-12-07)

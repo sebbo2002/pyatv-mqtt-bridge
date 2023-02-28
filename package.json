@@ -13,7 +13,7 @@
   },
   "description": "Bridge which allows you to control your Apple TV via MQTT",
   "devDependencies": {
-    "@qiwi/semantic-release-gh-pages-plugin": "^5.2.4",
+    "@qiwi/semantic-release-gh-pages-plugin": "^5.2.5",
     "@sebbo2002/semantic-release-docker": "^2.1.0-develop.1",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/exec": "^6.0.3",

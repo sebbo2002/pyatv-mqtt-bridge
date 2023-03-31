@@ -1,3 +1,27 @@
+# [5.0.0-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v5.0.0-develop.1...v5.0.0-develop.2) (2023-03-31)
+
+# [5.0.0-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.5...v5.0.0-develop.1) (2023-02-12)
+
+
+### Build System
+
+* Deprecate node.js 12 ([426588b](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/426588b4bb7bde2924bbc92006ca839e960872e1))
+
+
+### BREAKING CHANGES
+
+* From now on, only node.js ^14.8.0 || >=16.0.0 are supported
+
+## [4.0.3-develop.5](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.4...v4.0.3-develop.5) (2023-01-01)
+
+## [4.0.3-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.3...v4.0.3-develop.4) (2022-12-07)
+
+## [4.0.3-develop.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.2...v4.0.3-develop.3) (2022-12-04)
+
+## [4.0.3-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.3-develop.1...v4.0.3-develop.2) (2022-11-20)
+
+## [4.0.3-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.2...v4.0.3-develop.1) (2022-11-17)
+
 ## [4.0.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.1...v4.0.2) (2022-10-25)
 
 ## [4.0.2-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.2-develop.3...v4.0.2-develop.4) (2022-10-25)

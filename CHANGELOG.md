@@ -1,3 +1,10 @@
+# [5.1.0-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v5.0.0...v5.1.0-develop.1) (2023-03-31)
+
+
+### Features
+
+* Launch Apps ([2c58c35](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/2c58c35b16cefb7895d1baac49c7c84b33db11e4)), closes [#223](https://github.com/sebbo2002/pyatv-mqtt-bridge/issues/223)
+
 # [5.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v4.0.2...v5.0.0) (2023-03-31)
 
 

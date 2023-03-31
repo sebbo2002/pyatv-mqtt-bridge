@@ -145,7 +145,20 @@ export default class PyAtvMqttBridge {
                 });
             });
 
-            this.mqttClient.on('message', topic => {
+            this.mqttClient.on('message', (topic, body) => {
+                if (device.topic + '/launch' === topic) {
+                    const id = body.toString();
+                    atv.launchApp(id).catch(error => {
+                        this.log({
+                            level: 'error',
+                            host: device.host,
+                            message: `Unable to launch app "${id}"`,
+                            error
+                        });
+                    });
+                    return;
+                }
+
                 const key = Object
                     .keys(NodePyATVKeys)
                     .find(key => device.topic + '/' + key === topic) as NodePyATVKeys | undefined;

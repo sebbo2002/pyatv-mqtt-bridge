@@ -1,3 +1,5 @@
+# [5.1.0-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v5.1.0-develop.1...v5.1.0-develop.2) (2023-04-29)
+
 # [5.1.0-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v5.0.0...v5.1.0-develop.1) (2023-03-31)
 
 

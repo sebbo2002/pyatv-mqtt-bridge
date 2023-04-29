@@ -8,7 +8,7 @@
     "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge/issues"
   },
   "dependencies": {
-    "@sebbo2002/node-pyatv": "^6.0.1",
+    "@sebbo2002/node-pyatv": "^6.0.2",
     "mqtt": "^4.3.7"
   },
   "description": "Bridge which allows you to control your Apple TV via MQTT",

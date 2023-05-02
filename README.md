@@ -107,7 +107,8 @@ command: pyatv-mqtt-bridge --debug /app/config.json
 
 To execute a command send any message to the topic `$device/$command`. `$device` is the configured topic of the device
 and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/src/lib/types.ts#L49).
-Example: `/home/living/appletv/menu`.
+Example: `/home/living/appletv/menu`. To launch an app, send it's unique id (e.g. `com.google.ios.youtube`) to the topic 
+`$device/launch`
 
 #### How to check the current Apple TV power state and other status information ?
 

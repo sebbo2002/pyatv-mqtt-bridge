@@ -37,7 +37,7 @@
     "typescript": "^5.1.3"
   },
   "engines": {
-    "node": "^14.8.0 || >=16.0.0"
+    "node": "^16.0.0 || >=18.0.0"
   },
   "exports": {
     "import": "./dist/lib/index.js",

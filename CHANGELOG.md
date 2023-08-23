@@ -1,3 +1,10 @@
+## [6.0.2-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.2-develop.1...v6.0.2-develop.2) (2023-08-23)
+
+
+### Reverts
+
+* Revert "ci: Downgrade is-semantic-release till it's fixed" ([91c2ab5](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/91c2ab59d0559a060c11d07973382c465dd3345d))
+
 ## [6.0.2-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.1...v6.0.2-develop.1) (2023-07-18)
 
 ## [6.0.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.0...v6.0.1) (2023-07-11)

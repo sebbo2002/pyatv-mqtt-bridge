@@ -138,9 +138,15 @@ export default class PyAtvMqttBridge {
         if (this.mqttClient) {
             this.mqttClient.subscribe(device.topic + '/+');
             this.teardown.unshift(() => {
-                return new Promise(resolve => {
+                return new Promise((resolve, reject) => {
                     if(this.mqttClient) {
-                        this.mqttClient.unsubscribe(device.topic + '/+', resolve);
+                        this.mqttClient.unsubscribe(device.topic + '/+', error => {
+                            if (error) {
+                                reject(error);
+                            } else {
+                                resolve();
+                            }
+                        });
                     }
                 });
             });

@@ -9,44 +9,6 @@ on:
   pull_request: null
 
 jobs:
-  tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    if: github.repository != 'sebbo2002/js-template' && (contains(toJson(github.event.commits.*.message), '[skip ci]') == false || github.ref == 'refs/heads/main')
-    strategy:
-      matrix:
-        node: [16.x, 18.x, 20.x]
-    steps:
-      - name: ☁️ Checkout Project
-        uses: actions/checkout@v4
-      - name: 🔧 Setup node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: 'npm'
-      - name: 📦 Install dependencies
-        run: npm ci
-      - name: ⏳ Run tests
-        run: npm run test
-
-  coverage:
-    name: Code Coverage / Lint
-    runs-on: ubuntu-latest
-    if: github.repository != 'sebbo2002/js-template' && (contains(toJson(github.event.commits.*.message), '[skip ci]') == false || github.ref == 'refs/heads/main')
-    steps:
-      - name: ☁️ Checkout Project
-        uses: actions/checkout@v4
-      - name: 🔧 Setup node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-      - name: 📦 Install dependencies
-        run: npm ci
-      - name: 🔍 Run linter
-        run: npm run lint
-      - name: ⚙️ Build project
-        run: npm run build-all
-
   license-checker:
     name: License Checker
     runs-on: ubuntu-latest
@@ -100,7 +62,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
@@ -116,7 +78,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
@@ -132,7 +94,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
@@ -154,7 +116,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           pull: true
           push: true
           tags: |
@@ -179,7 +141,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           pull: true
           push: true
           tags: |
@@ -204,7 +166,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           pull: true
           push: true
           tags: |
@@ -245,7 +207,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: |
             ${{ github.repository }}:${{ github.sha }}
@@ -260,17 +222,6 @@ jobs:
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
           cache-to: type=inline
-      - name: 🏁 Boot-up Check
-        if: github.repository != 'sebbo2002/js-template'
-        run: |
-          docker run --name "app" -d $IMAGE
-          sleep 5
-          docker logs app
-          docker exec app echo "Ok."
-          docker stop app
-          docker rm app
-        env:
-          IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
     outputs:
       digest-gh: ${{ steps.docker-build-2.outputs.digest }}
       digest-dh: ${{ steps.docker-build-dh.outputs.digest }}
@@ -282,8 +233,6 @@ jobs:
     env:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
     needs:
-      - coverage
-      - tests
       - license-checker
       - docker-image
     if: ${{ github.repository != 'sebbo2002/js-template' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}

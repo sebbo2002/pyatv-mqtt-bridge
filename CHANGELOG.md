@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.2...v6.0.3) (2023-10-25)
+
+
+### Reverts
+
+* Revert "ci: Run tests with node.js v18, v20 and v21" ([405853b](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/405853bbd7fc55eb224ff657af7dab26f9482d88))
+
 ## [6.0.3-develop.7](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.6...v6.0.3-develop.7) (2023-10-18)
 
 

@@ -232,6 +232,11 @@ jobs:
     concurrency: release
     env:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     needs:
       - license-checker
       - docker-image
@@ -272,6 +277,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_OWNER: ${{ github.repository_owner }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
           DOCKER_LOCAL_IMAGE_GH: ghcr.io/${{ github.repository }}:${{ github.sha }}
           DOCKER_LOCAL_IMAGE_DH: ${{ github.repository }}:${{ github.sha }}
       - name: 🔃 Merge main back into develop

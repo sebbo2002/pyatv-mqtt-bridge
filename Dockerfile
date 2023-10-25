@@ -4,7 +4,7 @@ WORKDIR "/app"
 
 COPY package*.json "/app/"
 RUN apk add --no-cache --update bash && \
-    npm ci
+    npm ci --verbose
 
 COPY . "/app/"
 RUN npm run build && \

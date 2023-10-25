@@ -1,3 +1,22 @@
+## [6.0.3-develop.7](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.6...v6.0.3-develop.7) (2023-10-18)
+
+
+### Reverts
+
+* Revert "ci: Run tests with node.js v18, v20 and v21" ([1b245a5](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/1b245a58587bc6871e8b1633beff1f1bca05970f))
+
+## [6.0.3-develop.6](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.5...v6.0.3-develop.6) (2023-10-18)
+
+## [6.0.3-develop.5](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.4...v6.0.3-develop.5) (2023-10-16)
+
+## [6.0.3-develop.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.3...v6.0.3-develop.4) (2023-10-02)
+
+## [6.0.3-develop.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.2...v6.0.3-develop.3) (2023-09-27)
+
+## [6.0.3-develop.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3-develop.1...v6.0.3-develop.2) (2023-09-26)
+
+## [6.0.3-develop.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.2...v6.0.3-develop.1) (2023-09-23)
+
 ## [6.0.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.1...v6.0.2) (2023-09-18)
 
 ## [6.0.2-develop.6](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.2-develop.5...v6.0.2-develop.6) (2023-09-15)

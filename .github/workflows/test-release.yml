@@ -235,6 +235,7 @@ jobs:
     permissions:
       contents: write
       issues: write
+      packages: write
       pull-requests: write
       id-token: write
     needs:

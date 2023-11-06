@@ -32,7 +32,7 @@ jobs:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
     steps:
       - name: ☁️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: 🔧 Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: 🔧 Set up Buildx

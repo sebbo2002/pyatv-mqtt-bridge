@@ -17,7 +17,7 @@ jobs:
       - name: ☁️ Checkout Project
         uses: actions/checkout@v4
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           cache: 'npm'
       - name: 📦 Install dependencies
@@ -32,20 +32,20 @@ jobs:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
     steps:
       - name: ☁️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: 🔧 Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
       - name: 🔧 Set up Buildx
         id: buildx
         uses: docker/setup-buildx-action@master
       - name: 🔐 Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔐 Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         if: ${{ env.PUSH_TO_DOCKERHUB == 'true' }}
         with:
           username: ${{ github.repository_owner }}
@@ -246,7 +246,7 @@ jobs:
       - name: ☁️ Checkout Project
         uses: actions/checkout@v4
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
           cache: 'npm'
@@ -261,13 +261,13 @@ jobs:
       - name: 📂 Create docs folder
         run: mkdir ./docs
       - name: 🔐 Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔐 Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}

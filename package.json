@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@sebbo2002/node-pyatv": "^7.0.3",
-    "mqtt": "^5.1.2"
+    "mqtt": "^5.1.4"
   },
   "description": "Bridge which allows you to control your Apple TV via MQTT",
   "devDependencies": {

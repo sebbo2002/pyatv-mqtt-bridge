@@ -46,7 +46,7 @@
   "files": [
     "/dist"
   ],
-  "homepage": "https://github.com/sebbo2002/js-template#readme",
+  "homepage": "https://github.com/sebbo2002/pyatv-mqtt-bridge#readme",
   "license": "MIT",
   "main": "./dist/lib/index.cjs",
   "module": "./dist/lib/index.js",

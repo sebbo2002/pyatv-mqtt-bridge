@@ -52,7 +52,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: ℹ️ Set Build Variables
         id: buildVars
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
+        run: echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
       - name: 🪄 Build and push (1/2)
         uses: docker/build-push-action@v5
         continue-on-error: true

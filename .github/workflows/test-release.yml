@@ -17,7 +17,7 @@ jobs:
       - name: ☁️ Checkout Project
         uses: actions/checkout@v4
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           cache: 'npm'
       - name: 📦 Install dependencies
@@ -32,27 +32,27 @@ jobs:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
     steps:
       - name: ☁️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: 🔧 Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
       - name: 🔧 Set up Buildx
         id: buildx
         uses: docker/setup-buildx-action@master
       - name: 🔐 Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔐 Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         if: ${{ env.PUSH_TO_DOCKERHUB == 'true' }}
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: ℹ️ Set Build Variables
         id: buildVars
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
+        run: echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
       - name: 🪄 Build and push (1/2)
         uses: docker/build-push-action@v5
         continue-on-error: true
@@ -62,7 +62,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
@@ -78,7 +78,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
@@ -94,7 +94,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: build-container
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
@@ -116,7 +116,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: true
           tags: |
@@ -141,7 +141,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: true
           tags: |
@@ -166,7 +166,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: true
           tags: |
@@ -207,7 +207,7 @@ jobs:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             ${{ github.repository }}:${{ github.sha }}
@@ -235,6 +235,7 @@ jobs:
     permissions:
       contents: write
       issues: write
+      packages: write
       pull-requests: write
       id-token: write
     needs:
@@ -245,7 +246,7 @@ jobs:
       - name: ☁️ Checkout Project
         uses: actions/checkout@v4
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
           cache: 'npm'
@@ -260,13 +261,13 @@ jobs:
       - name: 📂 Create docs folder
         run: mkdir ./docs
       - name: 🔐 Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔐 Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}

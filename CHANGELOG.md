@@ -1,3 +1,20 @@
+# [7.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3...v7.0.0) (2023-11-23)
+
+
+### Build System
+
+* **Docker:** Update pyatv in Docker container to latest version ([2f79b2f](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/2f79b2fdea88704032eb40eb3672dd588c9f3cc2))
+
+
+### Features
+
+* Log pyatv output of push_updates ([618adc6](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/618adc6051b70789493da0932466a33ac04fc034))
+
+
+### BREAKING CHANGES
+
+* **Docker:** This removes the Docker Image for ARMv7, as they are not provided anymore by pyatv since v0.14.4 (Details: https://github.com/postlund/pyatv/commit/b0991698a3eca10ee12e654bbe1f436326872316)
+
 ## [6.0.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.2...v6.0.3) (2023-10-25)
 
 

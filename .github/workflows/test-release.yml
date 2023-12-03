@@ -91,65 +91,16 @@ jobs:
       - name: ℹ️ Set Build Variables
         id: buildVars
         run: echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
-      - name: 🪄 Build and push (1/2)
-        uses: docker/build-push-action@v5
-        continue-on-error: true
-        id: docker-build-1-1
+      - name: 🔧 Setup node.js
+        uses: actions/setup-node@v4
         with:
-          context: .
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          target: build-container
-          builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          pull: true
-          push: true
-          tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-          cache-from: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-          cache-to: type=inline
-      - name: 🪄 Build and push (1/2, second try)
+          cache: 'npm'
+      - name: 📦 Install dependencies
+        run: npm ci
+      - name: 🪄 Build and push
         uses: docker/build-push-action@v5
         continue-on-error: true
-        if: steps.docker-build-1-1.outcome=='failure'
-        id: docker-build-1-2
-        with:
-          context: .
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          target: build-container
-          builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          pull: true
-          push: true
-          tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-          cache-from: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-          cache-to: type=inline
-      - name: 🪄 Build and push (1/2, third try)
-        uses: docker/build-push-action@v5
-        continue-on-error: true
-        if: steps.docker-build-1-2.outcome=='failure'
-        id: docker-build-1-3
-        with:
-          context: .
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          target: build-container
-          builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          pull: true
-          push: true
-          tags: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-          cache-from: ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-          cache-to: type=inline
-      - name: 🪄 Build and push (1/2; Summary)
-        if: always()
-        run: |
-          if ${{ steps.docker-build-1-1.outcome=='success' || steps.docker-build-1-2.outcome=='success' || steps.docker-build-1-3.outcome=='success' }}; then
-             echo "🎉 Whoop whoop, that worked…"
-          else
-             exit 1
-          fi
-      - name: 🪄 Build and push (2/2)
-        uses: docker/build-push-action@v5
-        continue-on-error: true
-        id: docker-build-2-1
+        id: docker-build-1
         with:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -167,73 +118,70 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
           cache-from: |
-            ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:next
-      - name: 🪄 Build and push (2/2; second try)
+      - name: 🪄 Build and push (second try)
         uses: docker/build-push-action@v5
         continue-on-error: true
-        if: steps.docker-build-2-1.outcome=='failure'
-        id: docker-build-2-2
-        with:
-          context: .
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          pull: true
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
-          labels: |
-            org.opencontainers.image.authors=${{ github.repository_owner }}
-            org.opencontainers.image.created=${{ steps.buildVars.outputs.date }}
-            org.opencontainers.image.ref.name=${{ github.ref }}
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-          cache-from: |
-            ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
-            ghcr.io/${{ github.repository }}:next
-      - name: 🪄 Build and push (2/2; third try)
-        uses: docker/build-push-action@v5
-        if: steps.docker-build-2-2.outcome=='failure'
-        continue-on-error: true
-        id: docker-build-2-3
-        with:
-          context: .
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          pull: true
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
-          labels: |
-            org.opencontainers.image.authors=${{ github.repository_owner }}
-            org.opencontainers.image.created=${{ steps.buildVars.outputs.date }}
-            org.opencontainers.image.ref.name=${{ github.ref }}
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-          cache-from: |
-            ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
-            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
-            ghcr.io/${{ github.repository }}:next
-          cache-to: type=inline
-      - name: 🪄 Build and push (2/2; Summary)
-        if: always()
+        if: steps.docker-build-1.outcome=='failure'
         id: docker-build-2
+        with:
+          context: .
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          builder: ${{ steps.buildx.outputs.name }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          pull: true
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
+          labels: |
+            org.opencontainers.image.authors=${{ github.repository_owner }}
+            org.opencontainers.image.created=${{ steps.buildVars.outputs.date }}
+            org.opencontainers.image.ref.name=${{ github.ref }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: |
+            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
+            ghcr.io/${{ github.repository }}:next
+      - name: 🪄 Build and push (third try)
+        uses: docker/build-push-action@v5
+        if: steps.docker-build-2.outcome=='failure'
+        continue-on-error: true
+        id: docker-build-3
+        with:
+          context: .
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          builder: ${{ steps.buildx.outputs.name }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          pull: true
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
+          labels: |
+            org.opencontainers.image.authors=${{ github.repository_owner }}
+            org.opencontainers.image.created=${{ steps.buildVars.outputs.date }}
+            org.opencontainers.image.ref.name=${{ github.ref }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: |
+            ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
+            ghcr.io/${{ github.repository }}:next
+          cache-to: type=inline
+      - name: 🪄 Build and push (Summary)
+        if: always()
+        id: docker-build
         run: |
-          if ${{ steps.docker-build-2-1.outcome=='success' }}; then
+          if ${{ steps.docker-build-1.outcome=='success' }}; then
              echo "🎉 Whoop whoop, that worked (first try)"
-             echo "::set-output name=digest::${{ steps.docker-build-2-1.outputs.digest }}"
-          elif ${{ steps.docker-build-2-2.outcome=='success' }}; then
+             echo "digest=${{ steps.docker-build-1.outputs.digest }}" >> $GITHUB_OUTPUT
+          elif ${{ steps.docker-build-2.outcome=='success' }}; then
              echo "🎉 Whoop whoop, that worked (second try)"
-             echo "::set-output name=digest::${{ steps.docker-build-2-2.outputs.digest }}"
-          elif ${{ steps.docker-build-2-3.outcome=='success' }}; then
+             echo "digest=${{ steps.docker-build-2.outputs.digest }}" >> $GITHUB_OUTPUT
+          elif ${{ steps.docker-build-3.outcome=='success' }}; then
              echo "🎉 Whoop whoop, that worked (third try)"
-             echo "::set-output name=digest::${{ steps.docker-build-2-3.outputs.digest }}"
+             echo "digest=${{ steps.docker-build-3.outputs.digest }}" >> $GITHUB_OUTPUT
           else
              exit 1
           fi
@@ -258,7 +206,6 @@ jobs:
           cache-from: |
             ghcr.io/${{ github.repository }}:${{ github.sha }}
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
-            ghcr.io/${{ github.repository }}:build-container-${{ hashFiles('package*.json') }}
           cache-to: type=inline
       - name: 🏁 Boot-up Check
         if: github.repository != 'sebbo2002/js-template'
@@ -272,7 +219,7 @@ jobs:
         env:
           IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
     outputs:
-      digest-gh: ${{ steps.docker-build-2.outputs.digest }}
+      digest-gh: ${{ steps.docker-build.outputs.digest }}
       digest-dh: ${{ steps.docker-build-dh.outputs.digest }}
 
   release:

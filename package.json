@@ -58,7 +58,7 @@
   "scripts": {
     "build": "tsup && cp ./dist/lib/index.d.ts ./dist/lib/index.d.cts",
     "build-all": "./.github/workflows/build.sh",
-    "develop": "ts-node ./src/bin/cli.ts",
+    "develop": "TS_NODE_TRANSPILE_ONLY=true node --no-warnings --enable-source-maps --loader ts-node/esm src/bin/cli.ts",
     "license-check": "license-checker --production --summary",
     "lint": "eslint . --ext .ts",
     "start": "node ./dist/bin/cli.js"

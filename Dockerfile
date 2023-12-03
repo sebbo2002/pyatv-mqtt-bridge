@@ -21,11 +21,11 @@ RUN apk add --no-cache --update nodejs npm bash dumb-init && \
     adduser -u 1000 -G app -s /bin/sh -D app && \
     ln -s /app/dist/bin/cli.js /usr/local/bin/pyatv-mqtt-bridge
 
-COPY --from=build-container /app/package*.json "/app/"
+COPY package*.json "/app/"
 RUN npm ci --only-production
 
-COPY --from=build-container "/app" "/app"
-USER app
+COPY . "/app"
+USER node
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["pyatv-mqtt-bridge", "config.json"]

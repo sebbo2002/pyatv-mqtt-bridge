@@ -1,6 +1,6 @@
 .github
 .nyc_output
-dist
 docs
 node_modules
+src
 test

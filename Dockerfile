@@ -25,7 +25,7 @@ COPY package*.json "/app/"
 RUN npm ci --only-production
 
 COPY . "/app"
-USER node
+USER app
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["pyatv-mqtt-bridge", "config.json"]

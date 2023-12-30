@@ -1,3 +1,10 @@
+## [7.0.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v7.0.1...v7.0.2) (2023-12-30)
+
+
+### Bug Fixes
+
+* Fix Docker container ([8c340ae](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/8c340ae7623673bc875897fd5d1a303b83d2cd49)), closes [#301](https://github.com/sebbo2002/pyatv-mqtt-bridge/issues/301)
+
 ## [7.0.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v7.0.0...v7.0.1) (2023-12-16)
 
 # [7.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v6.0.3...v7.0.0) (2023-11-23)

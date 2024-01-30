@@ -26,14 +26,14 @@
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
-    "eslint-plugin-jsonc": "^2.11.2",
+    "eslint-plugin-jsonc": "^2.13.0",
     "esm": "^3.2.25",
     "license-checker": "^25.0.1",
     "semantic-release": "^23.0.0",
     "semantic-release-license": "^1.0.3",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.1",
-    "typedoc": "^0.25.6",
+    "typedoc": "^0.25.7",
     "typescript": "^5.3.3"
   },
   "engines": {

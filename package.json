@@ -8,7 +8,7 @@
     "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge/issues"
   },
   "dependencies": {
-    "@sebbo2002/node-pyatv": "^7.2.1",
+    "@sebbo2002/node-pyatv": "^7.3.0",
     "mqtt": "^5.3.5"
   },
   "description": "Bridge which allows you to control your Apple TV via MQTT",
@@ -21,19 +21,19 @@
     "@semantic-release/github": "^9.2.6",
     "@semantic-release/npm": "^11.0.2",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^20.11.5",
+    "@types/node": "^20.11.19",
     "@types/ws": "^8.5.10",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-plugin-jsonc": "^2.13.0",
     "esm": "^3.2.25",
     "license-checker": "^25.0.1",
-    "semantic-release": "^23.0.0",
+    "semantic-release": "^23.0.2",
     "semantic-release-license": "^1.0.3",
     "ts-node": "^10.9.2",
-    "tsup": "^8.0.1",
-    "typedoc": "^0.25.7",
+    "tsup": "^8.0.2",
+    "typedoc": "^0.25.8",
     "typescript": "^5.3.3"
   },
   "engines": {

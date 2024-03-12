@@ -19,7 +19,7 @@
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.2.6",
-    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/npm": "^11.0.3",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.19",
     "@types/ws": "^8.5.10",

@@ -1,3 +1,5 @@
+## [7.0.8](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v7.0.7...v7.0.8) (2024-08-14)
+
 ## [7.0.7](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v7.0.6...v7.0.7) (2024-06-13)
 
 ## [7.0.6](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v7.0.5...v7.0.6) (2024-05-03)

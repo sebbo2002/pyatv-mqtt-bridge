@@ -4,7 +4,7 @@
 import {existsSync, readFileSync} from 'fs';
 import {resolve} from 'path';
 import PyAtvMqttBridge from '../lib/index.js';
-import {LogParam} from '../lib/types.js';
+import {type LogParam} from '../lib/types.js';
 
 console.log('# pyatv-mqtt-bridge');
 console.log('----------------------------');

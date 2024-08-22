@@ -1,6 +1,6 @@
 'use strict';
 
-import {Config, ConfigDevice, LogParam} from './types.js';
+import type {Config, ConfigDevice, LogParam} from './types.js';
 import {connect, MqttClient} from 'mqtt';
 import pyatv, {NodePyATVDeviceEvent, NodePyATVKeys} from '@sebbo2002/node-pyatv';
 

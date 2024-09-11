@@ -1,4 +1,4 @@
-import {NodePyATVDeviceOptions} from '@sebbo2002/node-pyatv';
+import type {NodePyATVDeviceOptions} from '@sebbo2002/node-pyatv';
 
 export interface Config {
     broker: string;

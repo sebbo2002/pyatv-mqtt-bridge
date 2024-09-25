@@ -1,6 +1,0 @@
-extension:
-  - ts
-full-trace: true
-node-option:
-  - import=tsx
-recursive: true

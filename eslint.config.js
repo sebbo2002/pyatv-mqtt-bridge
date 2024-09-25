@@ -45,7 +45,8 @@ export default [
             'dist/**',
             'docs/**',
             'package-lock.json',
-            '.nyc_output/**'
+            '.nyc_output/**',
+            'config.example.json'
         ]
     }
 ];

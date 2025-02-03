@@ -1,3 +1,5 @@
+## [8.0.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.2...v8.0.3) (2025-02-03)
+
 ## [8.0.2](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.1...v8.0.2) (2025-01-09)
 
 ## [8.0.1](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.0...v8.0.1) (2024-11-22)

@@ -10,7 +10,7 @@ export default class PyAtvMqttBridge {
     private readonly teardown: Array<() => Promise<void>> = [];
 
     constructor(options: Config) {
-        if (typeof options.broker !== 'string') {
+        if (!options.broker) {
             throw new Error('options.broker is not set!');
         }
         if (!Array.isArray(options.devices) || !options.devices.length) {
@@ -58,7 +58,13 @@ export default class PyAtvMqttBridge {
             error
         });
 
-        this.mqttClient = connect(this.options.broker);
+        // this.mqttClient = connect(this.options.broker);
+        if (typeof this.options.broker === 'string') {
+            this.mqttClient = connect(this.options.broker);
+        } else {
+            this.mqttClient = connect(this.options.broker);
+        }
+
         this.mqttClient.on('error', errorListener);
         this.teardown.unshift(async () => {
             if (this.mqttClient) {

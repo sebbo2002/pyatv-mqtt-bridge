@@ -1,3 +1,10 @@
+# [8.1.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.4...v8.1.0) (2025-04-23)
+
+
+### Features
+
+* Allow broker configuration via IClientOptions object instead of url ([29794c9](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/29794c93551b8075f9fcf2bd4718c695a296113c)), closes [#408](https://github.com/sebbo2002/pyatv-mqtt-bridge/issues/408)
+
 ## [8.0.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.3...v8.0.4) (2025-03-09)
 
 ## [8.0.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.2...v8.0.3) (2025-02-03)

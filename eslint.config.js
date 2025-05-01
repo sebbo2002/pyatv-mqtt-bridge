@@ -8,26 +8,18 @@ export default [
     ...tseslint.configs.recommended,
     ...eslintPluginJsonc.configs['flat/recommended-with-jsonc'],
     {
-        files: [
-            'test/**/*.ts'
-        ],
+        files: ['test/**/*.ts'],
         rules: {
             '@typescript-eslint/ban-ts-ignore': 'off',
-            '@typescript-eslint/ban-ts-comment': 'off'
-        }
+            '@typescript-eslint/ban-ts-comment': 'off',
+        },
     },
     {
         rules: {
             semi: 'error',
-            quotes: [
-                'error',
-                'single'
-            ],
-            indent: [
-                'error',
-                4
-            ],
-            'jsonc/sort-keys': 'error'
+            quotes: ['error', 'single'],
+            indent: ['error', 4],
+            'jsonc/sort-keys': 'error',
         },
         languageOptions: {
             ecmaVersion: 2022,
@@ -35,9 +27,9 @@ export default [
             globals: {
                 ...globals.node,
                 ...globals.es6,
-                ...globals.mocha
-            }
-        }
+                ...globals.mocha,
+            },
+        },
     },
     {
         ignores: [
@@ -46,7 +38,7 @@ export default [
             'docs/**',
             'package-lock.json',
             '.nyc_output/**',
-            'config.example.json'
-        ]
-    }
+            'config.example.json',
+        ],
+    },
 ];

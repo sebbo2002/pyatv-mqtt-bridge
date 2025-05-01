@@ -1,26 +1,30 @@
 #!/usr/bin/env node
 'use strict';
 
-import {existsSync, readFileSync} from 'fs';
-import {resolve} from 'path';
+import { existsSync, readFileSync } from 'fs';
+import { resolve } from 'path';
 import PyAtvMqttBridge from '../lib/index.js';
-import {type LogParam} from '../lib/types.js';
+import { type LogParam } from '../lib/types.js';
 
 console.log('# pyatv-mqtt-bridge');
 console.log('----------------------------');
 
 const debug = process.argv.indexOf('--debug') > -1;
-const configPath = resolve(process.cwd(), process.argv[process.argv.length - 1]);
+const configPath = resolve(
+    process.cwd(),
+    process.argv[process.argv.length - 1],
+);
 if (!existsSync(configPath)) {
-    console.log('Usage: pyatv-mqtt-bridge [--debug] ~/pyatv-mqtt-bridge-config.json');
+    console.log(
+        'Usage: pyatv-mqtt-bridge [--debug] ~/pyatv-mqtt-bridge-config.json',
+    );
     process.exit(1);
 }
 
 let config;
 try {
     config = JSON.parse(readFileSync(configPath, 'utf8'));
-}
-catch (err) {
+} catch (err) {
     console.log('Unable to parse configuration file:');
     console.log(err);
     console.log('\nHave you removed the comments?\n');
@@ -50,7 +54,7 @@ try {
                 }
 
                 console.log(string);
-            }
+            },
         });
     }
 

@@ -1,3 +1,17 @@
+# [9.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.1.0...v9.0.0) (2025-05-12)
+
+
+### chore
+
+* Drop node v18 support ([3e18405](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/3e18405ac1e1be738a414623f97169c802567f99))
+
+
+### BREAKING CHANGES
+
+* Drop node.js v18 Support
+
+This node.js version is no longer supported. For more information see https://nodejs.dev/en/about/releases/
+
 # [8.1.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v8.0.4...v8.1.0) (2025-04-23)
 
 ### Features

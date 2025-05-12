@@ -1,9 +1,9 @@
-import type {NodePyATVDeviceOptions} from '@sebbo2002/node-pyatv';
+import type { NodePyATVDeviceOptions } from '@sebbo2002/node-pyatv';
 import type { IClientOptions } from 'mqtt';
 
 export interface Config {
     broker: string | IClientOptions;
-    log?: (msg: LogParam) => (void),
+    log?: (msg: LogParam) => void;
     devices: ConfigDevice[];
 }
 

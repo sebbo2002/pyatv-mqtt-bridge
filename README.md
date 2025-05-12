@@ -44,13 +44,13 @@ You can also use the provided Docker container to run `pyatv-mqtt-bridge` within
 
 3. Start pyatv
 
--   By command line :
+- By command line :
 
 ```bash
 pyatv-mqtt-bridge /home/eve/pyatv-mqtt-bridge.json
 ```
 
--   or use the Docker container :
+- or use the Docker container :
 
 ```bash
 docker run -d --restart=always --name=pyatv-mqtt-bridge \
@@ -58,7 +58,7 @@ docker run -d --restart=always --name=pyatv-mqtt-bridge \
     sebbo2002/pyatv-mqtt-bridge
 ```
 
--   or just run the Docker container from the [`docker-compose.yml`](docker-compose.yml) file with :
+- or just run the Docker container from the [`docker-compose.yml`](docker-compose.yml) file with :
 
 ```bash
 docker-compose up -d
@@ -76,13 +76,13 @@ pip3 install pyatv
 
 You just need to add the `--debug` option.
 
--   In command line :
+- In command line :
 
 ```bash
 pyatv-mqtt-bridge --debug /home/eve/pyatv-mqtt-bridge.json
 ```
 
--   or while using the Docker container :
+- or while using the Docker container :
 
 ```bash
 docker run -d --restart=always --name=pyatv-mqtt-bridge \
@@ -91,7 +91,7 @@ docker run -d --restart=always --name=pyatv-mqtt-bridge \
     pyatv-mqtt-bridge --debug /app/config.json
 ```
 
--   or while using the [`docker-compose.yml`](docker-compose.yml) file :
+- or while using the [`docker-compose.yml`](docker-compose.yml) file :
 
 ```yaml
 command: pyatv-mqtt-bridge --debug /app/config.json
@@ -107,7 +107,7 @@ command: pyatv-mqtt-bridge --debug /app/config.json
 
 To execute a command send any message to the topic `$device/$command`. `$device` is the configured topic of the device
 and `$command` is a command from [this list](https://github.com/sebbo2002/node-pyatv/blob/develop/src/lib/types.ts#L49).
-Example: `/home/living/appletv/menu`. To launch an app, send it's unique id (e.g. `com.google.ios.youtube`) to the topic 
+Example: `/home/living/appletv/menu`. To launch an app, send it's unique id (e.g. `com.google.ios.youtube`) to the topic
 `$device/launch`
 
 #### How to check the current Apple TV power state and other status information ?

@@ -107,7 +107,7 @@ export default class PyAtvMqttBridge {
         /* MQTT <--  PYATV */
 
         if (this.mqttClient) {
-            this.mqttClient.publish(device.topic + '/host', device.host, {
+            this.mqttClient.publish(device.topic + '/host', device.host || '', {
                 retain: true,
             });
             this.mqttClient.publish(device.topic + '/name', device.name, {

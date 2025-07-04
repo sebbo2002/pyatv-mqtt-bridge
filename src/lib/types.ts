@@ -13,7 +13,7 @@ export interface ConfigDevice extends NodePyATVDeviceOptions {
 
 export interface LogParam {
     level: string;
-    host: string | null;
+    host: string | null | undefined;
     message: string;
     error?: Error;
 }

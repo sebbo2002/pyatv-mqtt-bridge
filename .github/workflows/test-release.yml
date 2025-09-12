@@ -15,9 +15,9 @@ jobs:
     if: contains(toJson(github.event.commits.*.message), '[skip ci]') == false || github.ref == 'refs/heads/main'
     steps:
       - name: ☁️ Checkout Project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           cache: 'npm'
       - name: 📦 Install dependencies
@@ -32,7 +32,7 @@ jobs:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
     steps:
       - name: ☁️ Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🔧 Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: 🔧 Set up Buildx
@@ -54,7 +54,7 @@ jobs:
         id: buildVars
         run: echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           cache: 'npm'
       - name: 📦 Install dependencies
@@ -194,9 +194,9 @@ jobs:
     if: ${{ github.repository != 'sebbo2002/js-template' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
     steps:
       - name: ☁️ Checkout Project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🔧 Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22.x
           cache: 'npm'

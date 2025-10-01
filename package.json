@@ -19,7 +19,7 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^7.1.0",
         "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^11.0.5",
+        "@semantic-release/github": "^11.0.6",
         "@semantic-release/npm": "^12.0.2",
         "@types/mocha": "^10.0.10",
         "@types/node": "^24.3.1",
@@ -38,7 +38,7 @@
         "source-map-support": "^0.5.21",
         "tsup": "^8.5.0",
         "tsx": "^4.20.5",
-        "typedoc": "^0.28.12",
+        "typedoc": "^0.28.13",
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.41.0"
     },

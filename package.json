@@ -19,8 +19,8 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^7.1.0",
         "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^11.0.6",
-        "@semantic-release/npm": "^12.0.2",
+        "@semantic-release/github": "^12.0.0",
+        "@semantic-release/npm": "^13.1.1",
         "@types/mocha": "^10.0.10",
         "@types/node": "^24.9.1",
         "@types/ws": "^8.18.1",
@@ -33,14 +33,14 @@
         "husky": "^9.1.7",
         "license-checker": "^25.0.1",
         "prettier": "^3.6.2",
-        "semantic-release": "^24.2.9",
+        "semantic-release": "^25.0.1",
         "semantic-release-license": "^1.0.3",
         "source-map-support": "^0.5.21",
         "tsup": "^8.5.0",
         "tsx": "^4.20.6",
         "typedoc": "^0.28.14",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.45.0"
+        "typescript-eslint": "^8.46.2"
     },
     "engines": {
         "node": "20 || >=22.0.0"

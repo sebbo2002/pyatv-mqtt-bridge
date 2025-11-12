@@ -14,7 +14,6 @@
     "description": "Bridge which allows you to control your Apple TV via MQTT",
     "devDependencies": {
         "@eslint/js": "^9.39.1",
-        "@qiwi/semantic-release-gh-pages-plugin": "^5.4.3",
         "@sebbo2002/semantic-release-docker": "^6.0.1",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^7.1.0",
@@ -33,7 +32,7 @@
         "husky": "^9.1.7",
         "license-checker": "^25.0.1",
         "prettier": "^3.6.2",
-        "semantic-release": "^25.0.1",
+        "semantic-release": "^25.0.2",
         "semantic-release-license": "^1.0.3",
         "source-map-support": "^0.5.21",
         "tsup": "^8.5.0",

@@ -1,0 +1,94 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@sebbo2002/pyatv-mqtt-bridge - v9.0.5-develop.11</title><meta name="description" content="Documentation for @sebbo2002/pyatv-mqtt-bridge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">@sebbo2002/pyatv-mqtt-bridge - v9.0.5-develop.11</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@sebbo2002/pyatv-mqtt-bridge - v9.0.5-develop.11</h1></div><div class="tsd-panel tsd-typography"><h1 id="pyatv-mqtt-bridge" class="tsd-anchor-link">pyatv-mqtt-bridge<a href="#pyatv-mqtt-bridge" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p><a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
+<img src="https://img.shields.io/depfu/sebbo2002/pyatv-mqtt-bridge?style=flat-square" alt="Dependencies"></p>
+<p>MQTT Bridge allows you to remote control your Apple TV using the MQTT protocol. For many home automation systems, for
+example, this protocol is supported, so Apple TV can be integrated into your existing automation system. In addition to
+simulating key presses, you can also query the current state of Apple TV.</p>
+<h2 id="☁-installation" class="tsd-anchor-link">☁ Installation<a href="#☁-installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Before you use this module you need to install <code>pyatv</code>. See FAQ section for installation tips.</p>
+<p>To install the javascript module via npm run:</p>
+<pre><code>npm install -g @sebbo2002/pyatv-mqtt-bridge
+</code></pre>
+<p>You can also use the provided Docker container to run <code>pyatv-mqtt-bridge</code> within docker:</p>
+<pre><code>docker pull sebbo2002/pyatv-mqtt-bridge
+</code></pre>
+<h2 id="⚒-quick-start" class="tsd-anchor-link">⚒ Quick Start<a href="#⚒-quick-start" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ol>
+<li>
+<p>Use pyatv to connect to your Apple TV and authenticate [<a href="https://pyatv.dev/documentation/getting-started/">?</a>]</p>
+</li>
+<li>
+<p>Create a new pyatv-mqtt-bridge configuration file. Your can use the
+<a href="https://github.com/sebbo2002/pyatv-mqtt-bridge/blob/develop/config.example.json"><code>config.example.json</code></a> to start
+with.</p>
+</li>
+</ol>
+<pre><code class="json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;broker&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;mqtt://192.168.1.1&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;devices&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;Any Name&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;topic&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;home/livingroom/appletv&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;host&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;192.168.1.2&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;airplayCredentials&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB:CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD&quot;</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    ]</span><br/><span class="hl-0">}</span>
+</code><button type="button">Copy</button></pre>
+
+<ol start="3">
+<li>Start pyatv</li>
+</ol>
+<ul>
+<li>By command line :</li>
+</ul>
+<pre><code class="bash"><span class="hl-3">pyatv-mqtt-bridge</span><span class="hl-0"> </span><span class="hl-2">/home/eve/pyatv-mqtt-bridge.json</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>or use the Docker container :</li>
+</ul>
+<pre><code class="bash"><span class="hl-3">docker</span><span class="hl-0"> </span><span class="hl-2">run</span><span class="hl-0"> </span><span class="hl-4">-d</span><span class="hl-0"> </span><span class="hl-4">--restart=always</span><span class="hl-0"> </span><span class="hl-4">--name=pyatv-mqtt-bridge</span><span class="hl-0"> </span><span class="hl-5">\</span><br/><span class="hl-0">    </span><span class="hl-4">-v</span><span class="hl-0"> $(</span><span class="hl-3">pwd</span><span class="hl-0">)</span><span class="hl-2">/config.json:/app/config.json:ro</span><span class="hl-0"> </span><span class="hl-5">\</span><br/><span class="hl-0">    </span><span class="hl-2">sebbo2002/pyatv-mqtt-bridge</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>or just run the Docker container from the <a href="media/docker-compose.yml"><code>docker-compose.yml</code></a> file with :</li>
+</ul>
+<pre><code class="bash"><span class="hl-3">docker-compose</span><span class="hl-0"> </span><span class="hl-2">up</span><span class="hl-0"> </span><span class="hl-4">-d</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="🤨-faq" class="tsd-anchor-link">🤨 FAQ<a href="#🤨-faq" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><h4 id="how-to-install-pyatv" class="tsd-anchor-link">How to install pyatv<a href="#how-to-install-pyatv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="bash"><span class="hl-3">pip3</span><span class="hl-0"> </span><span class="hl-2">install</span><span class="hl-0"> </span><span class="hl-2">pyatv</span>
+</code><button type="button">Copy</button></pre>
+
+<h4 id="how-can-i-enable-debugging-mode-" class="tsd-anchor-link">How can I enable debugging mode ?<a href="#how-can-i-enable-debugging-mode-" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>You just need to add the <code>--debug</code> option.</p>
+<ul>
+<li>In command line :</li>
+</ul>
+<pre><code class="bash"><span class="hl-3">pyatv-mqtt-bridge</span><span class="hl-0"> </span><span class="hl-4">--debug</span><span class="hl-0"> </span><span class="hl-2">/home/eve/pyatv-mqtt-bridge.json</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>or while using the Docker container :</li>
+</ul>
+<pre><code class="bash"><span class="hl-3">docker</span><span class="hl-0"> </span><span class="hl-2">run</span><span class="hl-0"> </span><span class="hl-4">-d</span><span class="hl-0"> </span><span class="hl-4">--restart=always</span><span class="hl-0"> </span><span class="hl-4">--name=pyatv-mqtt-bridge</span><span class="hl-0"> </span><span class="hl-5">\</span><br/><span class="hl-0">    </span><span class="hl-4">-v</span><span class="hl-0"> $(</span><span class="hl-3">pwd</span><span class="hl-0">)</span><span class="hl-2">/config.json:/app/config.json:ro</span><span class="hl-0"> </span><span class="hl-5">\</span><br/><span class="hl-0">    </span><span class="hl-2">sebbo2002/pyatv-mqtt-bridge</span><span class="hl-0"> </span><span class="hl-5">\</span><br/><span class="hl-0">    </span><span class="hl-2">pyatv-mqtt-bridge</span><span class="hl-0"> </span><span class="hl-4">--debug</span><span class="hl-0"> </span><span class="hl-2">/app/config.json</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>or while using the <a href="media/docker-compose.yml"><code>docker-compose.yml</code></a> file :</li>
+</ul>
+<pre><code class="yaml"><span class="hl-6">command</span><span class="hl-0">: </span><span class="hl-7">pyatv-mqtt-bridge --debug /app/config.json</span>
+</code><button type="button">Copy</button></pre>
+
+<p>       then restart the container with :</p>
+<pre><code class="bash"><span class="hl-0">   </span><span class="hl-3">docker-compose</span><span class="hl-0"> </span><span class="hl-2">up</span>
+</code><button type="button">Copy</button></pre>
+
+<h4 id="how-can-i-send-commands-to-the-apple-tv" class="tsd-anchor-link">How can I send commands to the Apple TV?<a href="#how-can-i-send-commands-to-the-apple-tv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>To execute a command send any message to the topic <code>$device/$command</code>. <code>$device</code> is the configured topic of the device
+and <code>$command</code> is a command from <a href="https://github.com/sebbo2002/node-pyatv/blob/develop/src/lib/types.ts#L49">this list</a>.
+Example: <code>/home/living/appletv/menu</code>. To launch an app, send it's unique id (e.g. <code>com.google.ios.youtube</code>) to the topic
+<code>$device/launch</code></p>
+<h4 id="how-to-check-the-current-apple-tv-power-state-and-other-status-information-" class="tsd-anchor-link">How to check the current Apple TV power state and other status information ?<a href="#how-to-check-the-current-apple-tv-power-state-and-other-status-information-" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>You can listen to several subtopics from the root MQTT topic you've set on your <code>config.json</code> file
+(i.e. : <code>/home/living/appletv</code>), such as <code>/powerState</code> (on, off) and <code>/deviceState</code> (iddle, playing, etc...).</p>
+<h4 id="when-the-apple-tv-is-off-the-turnoff-command-turns-it-on-instead-how-to-fix-this-" class="tsd-anchor-link">When the Apple TV is off, the turnOff command turns it on instead, how to fix this ?<a href="#when-the-apple-tv-is-off-the-turnoff-command-turns-it-on-instead-how-to-fix-this-" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Say you send an MQTT message to turn off your Apple TV each time you're leaving home,
+with the following MQTT topic : <code>/home/living/appletv/turnOff</code>.<br>
+... but when you are back home, sometimes your Apple TV is on ! 🤔</p>
+<p>Actually, if you press the power button in the right upper corner of your Apple TV remote iOS app, while your Apple TV
+is already off, it will switch it on as well, and this project only provides bridging between MQTT
+and PyATV / Apple TV APIs, with no additional data persistence.</p>
+<blockquote>
+<p>(You could use the <code>/suspend</code> command instead of <code>/turnOff</code> to avoid this, but the <code>suspend</code> and <code>wakeup</code>
+commands are deprecated and may lead to unexpected behaviors).</p>
+</blockquote>
+<p>So you just need to implement a listener for the powerState MQTT topic (i.e. : <code>/home/living/appletv/powerState</code>)
+in your own app, and store the payload value somewhere (DB, local file, Redis...).</p>
+<p>Then your app logic with some &quot;standby apple TV&quot; feature should trigger an MQTT <code>/turnOff</code> command ONLY when your
+powerState stored value is 'on'.</p>
+<h2 id="copyright-and-license" class="tsd-anchor-link">Copyright and license<a href="#copyright-and-license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Copyright (c) Sebastian Pekarek under the <a href="media/LICENSE">MIT license</a>.</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#pyatv-mqtt-bridge"><span>pyatv-<wbr/>mqtt-<wbr/>bridge</span></a><ul><li><a href="#☁-installation"><span>☁ <wbr/>Installation</span></a></li><li><a href="#⚒-quick-start"><span>⚒ <wbr/>Quick <wbr/>Start</span></a></li><li><a href="#🤨-faq"><span>🤨 <wbr/>FAQ</span></a></li><li><ul><li><ul><li><a href="#how-to-install-pyatv"><span>How to install pyatv</span></a></li><li><a href="#how-can-i-enable-debugging-mode-"><span>How can <wbr/>I enable debugging mode ?</span></a></li><li><a href="#how-can-i-send-commands-to-the-apple-tv"><span>How can <wbr/>I send commands to the <wbr/>Apple <wbr/>TV?</span></a></li><li><a href="#how-to-check-the-current-apple-tv-power-state-and-other-status-information-"><span>How to check the current <wbr/>Apple <wbr/>TV power state and other status information ?</span></a></li><li><a href="#when-the-apple-tv-is-off-the-turnoff-command-turns-it-on-instead-how-to-fix-this-"><span>When the <wbr/>Apple <wbr/>TV is off, the turn<wbr/>Off command turns it on instead, how to fix this ?</span></a></li></ul></li></ul></li><li><a href="#copyright-and-license"><span>Copyright and license</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">@sebbo2002/pyatv-mqtt-bridge - v9.0.5-develop.11</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

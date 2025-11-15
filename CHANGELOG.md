@@ -1,3 +1,5 @@
+## [9.0.5](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v9.0.4...v9.0.5) (2025-11-15)
+
 ## [9.0.4](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v9.0.3...v9.0.4) (2025-09-12)
 
 ## [9.0.3](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v9.0.2...v9.0.3) (2025-08-24)

@@ -15,7 +15,7 @@ jobs:
     if: contains(toJson(github.event.commits.*.message), '[skip ci]') == false || github.ref == 'refs/heads/main'
     steps:
       - name: ☁️ Checkout Project
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔧 Setup node.js
         uses: actions/setup-node@v6
         with:
@@ -32,7 +32,7 @@ jobs:
       PUSH_TO_DOCKERHUB: ${{ (github.repository != 'sebbo2002/js-template') && (secrets.DOCKERHUB_TOKEN != null) }}
     steps:
       - name: ☁️ Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔧 Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: 🔧 Set up Buildx
@@ -198,7 +198,7 @@ jobs:
     if: ${{ github.repository != 'sebbo2002/js-template' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
     steps:
       - name: ☁️ Checkout Project
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 🔧 Setup node.js
         uses: actions/setup-node@v6
         with:
@@ -259,7 +259,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: everlytic/branch-merge@1.1.5
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           source_ref: 'main'
           target_branch: 'develop'
           commit_message_template: 'Merge branch {source_ref} into {target_branch} [skip ci]'

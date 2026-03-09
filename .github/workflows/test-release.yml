@@ -62,7 +62,7 @@ jobs:
       - name: ⚙️ Build project
         run: npm run build
       - name: 🪄 Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         continue-on-error: true
         id: docker-build-1
         timeout-minutes: 30
@@ -86,7 +86,7 @@ jobs:
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:next
       - name: 🪄 Build and push (second try)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         continue-on-error: true
         if: steps.docker-build-1.outcome=='failure'
         id: docker-build-2
@@ -112,7 +112,7 @@ jobs:
             ghcr.io/${{ github.repository }}:cache-${{ hashFiles('package*.json') }}
             ghcr.io/${{ github.repository }}:next
       - name: 🪄 Build and push (third try)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         if: steps.docker-build-2.outcome=='failure'
         continue-on-error: true
         id: docker-build-3
@@ -156,7 +156,7 @@ jobs:
       - name: 🔄 Push container to DockerHub
         id: docker-build-dh
         if: ${{ env.PUSH_TO_DOCKERHUB == 'true' }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           github-token: ${{ secrets.GITHUB_TOKEN }}

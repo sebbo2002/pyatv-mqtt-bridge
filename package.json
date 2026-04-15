@@ -38,9 +38,9 @@
         "source-map-support": "^0.5.21",
         "tsdown": "^0.21.8",
         "tsx": "^4.21.0",
-        "typedoc": "^0.28.17",
-        "typescript": "^5.9.3",
-        "typescript-eslint": "^8.56.0"
+        "typedoc": "^0.28.19",
+        "typescript": "^6.0.2",
+        "typescript-eslint": "^8.58.2"
     },
     "engines": {
         "node": "20 || >=22.0.0"

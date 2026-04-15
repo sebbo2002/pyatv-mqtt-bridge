@@ -36,17 +36,17 @@
         "semantic-release": "^25.0.3",
         "semantic-release-license": "^1.0.3",
         "source-map-support": "^0.5.21",
-        "tsup": "^8.5.1",
+        "tsdown": "^0.21.8",
         "tsx": "^4.21.0",
-        "typedoc": "^0.28.17",
-        "typescript": "^5.9.3",
-        "typescript-eslint": "^8.56.0"
+        "typedoc": "^0.28.19",
+        "typescript": "^6.0.2",
+        "typescript-eslint": "^8.58.2"
     },
     "engines": {
         "node": "20 || >=22.0.0"
     },
     "exports": {
-        "import": "./dist/lib/index.js",
+        "import": "./dist/lib/index.mjs",
         "require": "./dist/lib/index.cjs"
     },
     "files": [
@@ -62,7 +62,7 @@
         "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge.git"
     },
     "scripts": {
-        "build": "tsup && cp ./dist/lib/index.d.ts ./dist/lib/index.d.cts",
+        "build": "tsdown",
         "build-all": "./.github/workflows/build.sh",
         "develop": "tsx src/bin/cli.ts",
         "license-check": "license-checker --production --summary",

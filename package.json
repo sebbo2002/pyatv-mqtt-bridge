@@ -1,7 +1,7 @@
 {
     "author": "Sebastian Pekarek <mail@sebbo.net>",
     "bin": {
-        "pyatv-mqtt-bridge": "./dist/bin/cli.js"
+        "pyatv-mqtt-bridge": "./dist/bin/cli.mjs"
     },
     "bugs": {
         "email": "peithosoreixookierah@e.sebbo.net",
@@ -32,11 +32,11 @@
         "globals": "^17.4.0",
         "husky": "^9.1.7",
         "license-checker": "^25.0.1",
-        "prettier": "^3.8.1",
+        "prettier": "^3.5.3",
         "semantic-release": "^25.0.3",
         "semantic-release-license": "^1.0.3",
         "source-map-support": "^0.5.21",
-        "tsdown": "^0.21.8",
+        "tsdown": "^0.21.9",
         "tsx": "^4.21.0",
         "typedoc": "^0.28.19",
         "typescript": "^6.0.2",
@@ -55,7 +55,7 @@
     "homepage": "https://github.com/sebbo2002/pyatv-mqtt-bridge#readme",
     "license": "MIT",
     "main": "./dist/lib/index.cjs",
-    "module": "./dist/lib/index.js",
+    "module": "./dist/lib/index.mjs",
     "name": "@sebbo2002/pyatv-mqtt-bridge",
     "repository": {
         "type": "git",
@@ -67,7 +67,7 @@
         "develop": "tsx src/bin/cli.ts",
         "license-check": "license-checker --production --summary",
         "lint": "npx eslint . --fix && npx prettier . --write",
-        "start": "node ./dist/bin/cli.js"
+        "start": "node ./dist/bin/cli.mjs"
     },
     "type": "module"
 }

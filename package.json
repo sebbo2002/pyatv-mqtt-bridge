@@ -1,7 +1,7 @@
 {
     "author": "Sebastian Pekarek <mail@sebbo.net>",
     "bin": {
-        "pyatv-mqtt-bridge": "./dist/bin/cli.js"
+        "pyatv-mqtt-bridge": "./dist/bin/cli.mjs"
     },
     "bugs": {
         "email": "peithosoreixookierah@e.sebbo.net",
@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@sebbo2002/node-pyatv": "^9.0.3",
-        "mqtt": "^5.15.0"
+        "mqtt": "^5.15.1"
     },
     "description": "Bridge which allows you to control your Apple TV via MQTT",
     "devDependencies": {
@@ -18,35 +18,35 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^7.1.0",
         "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^12.0.3",
-        "@semantic-release/npm": "^13.1.4",
+        "@semantic-release/github": "^12.0.6",
+        "@semantic-release/npm": "^13.1.5",
         "@types/mocha": "^10.0.10",
-        "@types/node": "^25.2.3",
+        "@types/node": "^25.6.0",
         "@types/ws": "^8.18.1",
-        "c8": "^10.1.3",
-        "eslint": "^10.0.0",
+        "c8": "^11.0.0",
+        "eslint": "^10.1.0",
         "eslint-config-prettier": "^10.1.8",
-        "eslint-plugin-jsonc": "^2.21.1",
-        "eslint-plugin-perfectionist": "^5.5.0",
+        "eslint-plugin-jsonc": "^3.1.2",
+        "eslint-plugin-perfectionist": "^5.8.0",
         "esm": "^3.2.25",
-        "globals": "^17.3.0",
+        "globals": "^17.4.0",
         "husky": "^9.1.7",
         "license-checker": "^25.0.1",
-        "prettier": "^3.8.1",
+        "prettier": "^3.5.3",
         "semantic-release": "^25.0.3",
         "semantic-release-license": "^1.0.3",
         "source-map-support": "^0.5.21",
-        "tsup": "^8.5.1",
+        "tsdown": "^0.21.9",
         "tsx": "^4.21.0",
-        "typedoc": "^0.28.17",
-        "typescript": "^5.9.3",
-        "typescript-eslint": "^8.56.0"
+        "typedoc": "^0.28.19",
+        "typescript": "^6.0.2",
+        "typescript-eslint": "^8.58.2"
     },
     "engines": {
         "node": "20 || >=22.0.0"
     },
     "exports": {
-        "import": "./dist/lib/index.js",
+        "import": "./dist/lib/index.mjs",
         "require": "./dist/lib/index.cjs"
     },
     "files": [
@@ -55,19 +55,19 @@
     "homepage": "https://github.com/sebbo2002/pyatv-mqtt-bridge#readme",
     "license": "MIT",
     "main": "./dist/lib/index.cjs",
-    "module": "./dist/lib/index.js",
+    "module": "./dist/lib/index.mjs",
     "name": "@sebbo2002/pyatv-mqtt-bridge",
     "repository": {
         "type": "git",
         "url": "https://github.com/sebbo2002/pyatv-mqtt-bridge.git"
     },
     "scripts": {
-        "build": "tsup && cp ./dist/lib/index.d.ts ./dist/lib/index.d.cts",
+        "build": "tsdown",
         "build-all": "./.github/workflows/build.sh",
         "develop": "tsx src/bin/cli.ts",
         "license-check": "license-checker --production --summary",
         "lint": "npx eslint . --fix && npx prettier . --write",
-        "start": "node ./dist/bin/cli.js"
+        "start": "node ./dist/bin/cli.mjs"
     },
     "type": "module"
 }

@@ -27,7 +27,7 @@
         "eslint": "^10.2.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-jsonc": "^3.1.2",
-        "eslint-plugin-perfectionist": "^5.8.0",
+        "eslint-plugin-perfectionist": "^5.9.0",
         "esm": "^3.2.25",
         "globals": "^17.5.0",
         "husky": "^9.1.7",
@@ -40,7 +40,7 @@
         "tsx": "^4.21.0",
         "typedoc": "^0.28.19",
         "typescript": "^6.0.3",
-        "typescript-eslint": "^8.58.2"
+        "typescript-eslint": "^8.59.1"
     },
     "engines": {
         "node": "20 || >=22.0.0"

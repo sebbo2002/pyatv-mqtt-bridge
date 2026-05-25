@@ -19,7 +19,7 @@ WORKDIR "/app"
 RUN apk add --no-cache --update nodejs npm bash dumb-init && \
     addgroup -g 1000 app && \
     adduser -u 1000 -G app -s /bin/sh -D app && \
-    ln -s /app/dist/bin/cli.js /usr/local/bin/pyatv-mqtt-bridge
+    ln -s /app/dist/bin/cli.mjs /usr/local/bin/pyatv-mqtt-bridge
 
 COPY package*.json "/app/"
 RUN npm ci --only-production

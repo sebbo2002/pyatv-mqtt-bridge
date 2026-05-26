@@ -37,7 +37,7 @@
         "semantic-release-license": "^1.0.3",
         "source-map-support": "^0.5.21",
         "tsdown": "^0.22.0",
-        "tsx": "^4.21.0",
+        "tsx": "^4.22.3",
         "typedoc": "^0.28.19",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.59.1"

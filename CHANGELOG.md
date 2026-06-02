@@ -1,3 +1,22 @@
+# [11.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v10.0.0...v11.0.0) (2026-06-02)
+
+
+### Bug Fixes
+
+* Fix symlink issue in Dockerfile ([27b0472](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/27b0472e5f6b272f8a297a00541fcaa5aa2b2569)), closes [#534](https://github.com/sebbo2002/pyatv-mqtt-bridge/issues/534)
+
+
+### Features
+
+* Drop support for node.js v20 and v23 ([d949a08](https://github.com/sebbo2002/pyatv-mqtt-bridge/commit/d949a088c82ede8768c62556cfc0da9ce2255b1b))
+
+
+### BREAKING CHANGES
+
+* Drop node.js v20 / v23 Support
+
+This node.js version is no longer supported. For more information see https://nodejs.dev/en/about/releases/
+
 # [10.0.0](https://github.com/sebbo2002/pyatv-mqtt-bridge/compare/v9.0.7...v10.0.0) (2026-04-17)
 
 

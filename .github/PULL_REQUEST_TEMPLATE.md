@@ -17,7 +17,4 @@
     - Run `npm run lint` to double check
 - [ ] My change requires a change to the documentation
     - [ ] I have updated the documentation accordingly
-- [ ] I have added tests to cover my changes
-    - Run `npm run test` to run the unit tests and `npm run coverage` to generate a coverage report
-- [ ] All new and existing tests passed
 - [ ] My commit messages follow the [commit guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)

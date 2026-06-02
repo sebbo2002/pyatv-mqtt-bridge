@@ -1,4 +1,5 @@
 name: ReleaseBot
+
 on:
   workflow_dispatch:
   push:

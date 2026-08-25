@@ -39,7 +39,7 @@
         "tsdown": "^0.22.14",
         "tsx": "^4.23.12",
         "typedoc": "^0.28.20",
-        "typescript": "^7.0.2",
+        "typescript": "^6.0.3",
         "typescript-eslint": "^8.67.0"
     },
     "engines": {

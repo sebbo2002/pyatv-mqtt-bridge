@@ -18,4 +18,3 @@ updates:
       include: scope
     schedule:
       interval: weekly
-
